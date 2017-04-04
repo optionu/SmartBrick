@@ -2,10 +2,10 @@ import Cocoa
 import SmartBricks
 import PlaygroundSupport
 
-//PlaygroundPage.current.needsIndefiniteExecution = true
+PlaygroundPage.current.needsIndefiniteExecution = true
 
-//let smartBrickManager = SmartBrickManager()
-//smartBrickManager.scanForDevices()
+let smartBrickManager = SmartBrickManager()
+smartBrickManager.scanForDevices()
 
 print("a")
 

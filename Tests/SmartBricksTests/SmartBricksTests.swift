@@ -12,9 +12,17 @@ import SmartBricks
 
 class SmartBricksTests: XCTestCase {
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        //// XCTAssertEqual(SmartBricks().text, "Hello, World!")
+        let smartBrickManager = SmartBrickManager()
+        smartBrickManager.scanForDevices()
+        let e = expectation(description: "description")
+        waitForExpectations(timeout: 10, handler: nil)
+        
+        // Advertisement data
+        let data = Data(bytes: [0x98, 0x01,
+                                0x06, 0x00, 0x00, 0x0b, 0x00, 0x0b, 0x12,
+                                0x07, 0x02, 0xf3, 0x43, 0x3d, 0x19, 0xfd, 0xc8,
+                                0x02, 0x03, 0x00,
+                                0x05, 0x06, 0xe8, 0x4b, 0xa9, 0x5b])
     }
 }
 

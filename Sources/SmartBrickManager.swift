@@ -60,7 +60,10 @@ class DeviceController: NSObject, CBCentralManagerDelegate {
 //            self.delegate?.spheroManager(self, didDiscover: SpheroDescription(name: peripheral.name, identifier: peripheral.identifier, rssi: rssi.intValue))
 //        }
 //        CFRunLoopWakeUp(CFRunLoopGetMain())
-        print("didDiscover \(peripheral.identifier)")
+//        print("didDiscover \(peripheral.identifier) \(peripheral.name) \(advertisementData)")
+        if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
+            print("\(peripheral.identifier) \(peripheral.name) \(manufacturerData)")
+        }
     }
 
     func scanForDevices(_ central: CBCentralManager) {
@@ -74,7 +77,7 @@ class DeviceController: NSObject, CBCentralManagerDelegate {
             //&& !central.isScanning else { return }
 
         print("scanForDevices")
-        central.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+        central.scanForPeripherals(withServices: nil, options: nil)
     }
 
     func stopScanning(_ central: CBCentralManager) {
