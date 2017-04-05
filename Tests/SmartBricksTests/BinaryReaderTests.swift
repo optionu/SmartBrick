@@ -46,7 +46,15 @@ class BinaryReaderTests: XCTestCase {
         XCTAssertFalse(binaryReader.canRead(numberOfBytes:3))
     }
     
-    // skipNumberOfBytes, advance(by:)
+    func testAdvance() {
+        let data = Data(bytes: [0x01])
+        let binaryReader = BinaryReader(withData: data)
+
+        XCTAssertTrue(binaryReader.canRead(numberOfBytes:1))
+        binaryReader.advance(byNumberOfBytes: 1)
+        XCTAssertFalse(binaryReader.canRead(numberOfBytes:1))
+    }
+    
     // SBrick: length + type + data
 }
 

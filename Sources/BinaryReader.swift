@@ -22,6 +22,12 @@ class BinaryReader {
         return position + bytes <= data.count
     }
     
+    func advance(byNumberOfBytes bytes: Int) {
+        precondition(canRead(numberOfBytes: bytes))
+        
+        position += bytes
+    }
+    
     func readUInt8() -> UInt8 {
         precondition(canRead(numberOfBytes: MemoryLayout<UInt8>.size))
         
