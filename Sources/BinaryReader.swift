@@ -29,37 +29,27 @@ class BinaryReader {
     }
     
     func readUInt8() -> UInt8 {
-        precondition(canRead(numberOfBytes: MemoryLayout<UInt8>.size))
-        
-        let value: UInt8 = readInteger(fromData: data, start: position)
-        position += MemoryLayout<UInt8>.size
-        
-        return value
+        return readInteger()
     }
     
     func readUInt16() -> UInt16 {
-        precondition(canRead(numberOfBytes: MemoryLayout<UInt16>.size))
-        
-        let value: UInt16 = readInteger(fromData: data, start: position)
-        position += MemoryLayout<UInt16>.size
-        
-        return bigEndian ? UInt16(bigEndian: value) : UInt16(littleEndian: value)
+        return bigEndian ? UInt16(bigEndian: readInteger()) : UInt16(littleEndian: readInteger())
     }
     
     func readUInt32() -> UInt32 {
-        precondition(canRead(numberOfBytes: MemoryLayout<UInt32>.size))
-        
-        let value: UInt32 = readInteger(fromData: data, start: position)
-        position += MemoryLayout<UInt32>.size
-        
-        return bigEndian ? UInt32(bigEndian: value) : UInt32(littleEndian: value)
+        return bigEndian ? UInt32(bigEndian: readInteger()) : UInt32(littleEndian: readInteger())
     }
 
-    private func readInteger<T: Integer>(fromData data: Data, start: Int) -> T {
-        return data.withUnsafeBytes({(bytePointer: UnsafePointer<UInt8>) in
-            bytePointer.advanced(by: start).withMemoryRebound(to: T.self, capacity: MemoryLayout<T>.size) { pointer in
+    private func readInteger<T: Integer>() -> T {
+        precondition(canRead(numberOfBytes: MemoryLayout<T>.size))
+        
+        let value = data.withUnsafeBytes({(bytePointer: UnsafePointer<UInt8>) in
+            bytePointer.advanced(by: position).withMemoryRebound(to: T.self, capacity: MemoryLayout<T>.size) { pointer in
                 return pointer.pointee
             }
         })
+        position += MemoryLayout<T>.size
+        
+        return value
     }
 }
