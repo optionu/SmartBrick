@@ -18,6 +18,20 @@ class BinaryReader {
         self.bigEndian = bigEndian
     }
     
+    func readUInt8() -> UInt8 {
+        let value: UInt8 = readInteger(fromData: data, start: position)
+        position += MemoryLayout<UInt8>.size
+        
+        return value
+    }
+    
+    func readUInt16() -> UInt16 {
+        let value: UInt16 = readInteger(fromData: data, start: position)
+        position += MemoryLayout<UInt16>.size
+        
+        return bigEndian ? UInt16(bigEndian: value) : UInt16(littleEndian: value)
+    }
+    
     func readUInt32() -> UInt32 {
         let value: UInt32 = readInteger(fromData: data, start: position)
         position += MemoryLayout<UInt32>.size
