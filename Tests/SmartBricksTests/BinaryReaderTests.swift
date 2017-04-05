@@ -15,6 +15,8 @@ class BinaryReaderTests: XCTestCase {
                                          0x01, 0x02,
                                          0x01, 0x02, 0x03, 0x04])
         let binaryReader = BinaryReader(withData: bigEndianData, bigEndian: true)
+        XCTAssertEqual(binaryReader.data, bigEndianData)
+        XCTAssertTrue(binaryReader.bigEndian)
 
         XCTAssertEqual(binaryReader.readUInt8(), 1)
         XCTAssertEqual(binaryReader.readUInt16(), 258)
@@ -25,15 +27,27 @@ class BinaryReaderTests: XCTestCase {
         let bigEndianData = Data(bytes: [0x01,
                                          0x02, 0x01,
                                          0x04, 0x03, 0x02, 0x01])
-        let binaryReader = BinaryReader(withData: bigEndianData, bigEndian: false)
+        let binaryReader = BinaryReader(withData: bigEndianData)
+        XCTAssertEqual(binaryReader.data, bigEndianData)
+        XCTAssertFalse(binaryReader.bigEndian)
         
         XCTAssertEqual(binaryReader.readUInt8(), 1)
         XCTAssertEqual(binaryReader.readUInt16(), 258)
         XCTAssertEqual(binaryReader.readUInt32(), 16909060)
     }
     
-    // canReadNumberOfBytes
-    // skipNumberOfBytes
+    func testCanRead() {
+        let data = Data(bytes: [0x01, 0x02])
+        let binaryReader = BinaryReader(withData: data)
+        
+        XCTAssertTrue(binaryReader.canRead(numberOfBytes:0))
+        XCTAssertTrue(binaryReader.canRead(numberOfBytes:1))
+        XCTAssertTrue(binaryReader.canRead(numberOfBytes:2))
+        XCTAssertFalse(binaryReader.canRead(numberOfBytes:3))
+    }
+    
+    // skipNumberOfBytes, advance(by:)
+    // SBrick: length + type + data
 }
 
 #if os(Linux)

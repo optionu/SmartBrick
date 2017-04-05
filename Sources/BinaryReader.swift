@@ -9,7 +9,7 @@
 import Foundation
 
 class BinaryReader {
-    var position = 0
+    private var position = 0
     let data: Data
     let bigEndian: Bool
     
@@ -18,7 +18,13 @@ class BinaryReader {
         self.bigEndian = bigEndian
     }
     
+    func canRead(numberOfBytes bytes: Int) -> Bool {
+        return position + bytes <= data.count
+    }
+    
     func readUInt8() -> UInt8 {
+        precondition(canRead(numberOfBytes: MemoryLayout<UInt8>.size))
+        
         let value: UInt8 = readInteger(fromData: data, start: position)
         position += MemoryLayout<UInt8>.size
         
@@ -26,6 +32,8 @@ class BinaryReader {
     }
     
     func readUInt16() -> UInt16 {
+        precondition(canRead(numberOfBytes: MemoryLayout<UInt16>.size))
+        
         let value: UInt16 = readInteger(fromData: data, start: position)
         position += MemoryLayout<UInt16>.size
         
@@ -33,6 +41,8 @@ class BinaryReader {
     }
     
     func readUInt32() -> UInt32 {
+        precondition(canRead(numberOfBytes: MemoryLayout<UInt32>.size))
+        
         let value: UInt32 = readInteger(fromData: data, start: position)
         position += MemoryLayout<UInt32>.size
         
