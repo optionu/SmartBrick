@@ -61,8 +61,9 @@ class DeviceController: NSObject, CBCentralManagerDelegate {
 //        }
 //        CFRunLoopWakeUp(CFRunLoopGetMain())
 //        print("didDiscover \(peripheral.identifier) \(peripheral.name) \(advertisementData)")
-        if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
-            print("\(peripheral.identifier) \(peripheral.name) \(manufacturerData)")
+        if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
+            let smartBrick = SBrick(identifier: peripheral.identifier, name: peripheral.name, manufacturerData: manufacturerData) {
+            print("Found \(smartBrick.name) \(smartBrick.identifier)")
         }
     }
 

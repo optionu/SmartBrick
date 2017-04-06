@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0392C9E11E93C2DD006BEE71 /* SmartBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392C9E01E93C2DD006BEE71 /* SmartBrick.swift */; };
-		0392C9E21E93C413006BEE71 /* SmartBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392C9E01E93C2DD006BEE71 /* SmartBrick.swift */; };
+		0392C9E11E93C2DD006BEE71 /* SmartBricks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392C9E01E93C2DD006BEE71 /* SmartBricks.swift */; };
+		0392C9E21E93C413006BEE71 /* SmartBricks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0392C9E01E93C2DD006BEE71 /* SmartBricks.swift */; };
 		039CD9961E92A4A2006D4992 /* SmartBrickManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039CD9911E92A4A2006D4992 /* SmartBrickManager.swift */; };
 		039CD9991E92A4B8006D4992 /* SmartBricksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039CD9951E92A4A2006D4992 /* SmartBricksTests.swift */; };
 		039CD99A1E92A4B9006D4992 /* SmartBricksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039CD9951E92A4A2006D4992 /* SmartBricksTests.swift */; };
@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0392C9E01E93C2DD006BEE71 /* SmartBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBrick.swift; sourceTree = "<group>"; };
+		0392C9E01E93C2DD006BEE71 /* SmartBricks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBricks.swift; sourceTree = "<group>"; };
 		039CD9911E92A4A2006D4992 /* SmartBrickManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBrickManager.swift; sourceTree = "<group>"; };
 		039CD9951E92A4A2006D4992 /* SmartBricksTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBricksTests.swift; sourceTree = "<group>"; };
 		52D6D97C1BEFF229002C0205 /* SmartBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SmartBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				039CD9911E92A4A2006D4992 /* SmartBrickManager.swift */,
-				0392C9E01E93C2DD006BEE71 /* SmartBrick.swift */,
+				0392C9E01E93C2DD006BEE71 /* SmartBricks.swift */,
 				62CCA8CC1E95848E00F00B80 /* BinaryReader.swift */,
 			);
 			path = Sources;
@@ -336,7 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				039CD9961E92A4A2006D4992 /* SmartBrickManager.swift in Sources */,
-				0392C9E11E93C2DD006BEE71 /* SmartBrick.swift in Sources */,
+				0392C9E11E93C2DD006BEE71 /* SmartBricks.swift in Sources */,
 				62CCA8CD1E95848E00F00B80 /* BinaryReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,7 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				039CD99B1E92A4BC006D4992 /* SmartBrickManager.swift in Sources */,
-				0392C9E21E93C413006BEE71 /* SmartBrick.swift in Sources */,
+				0392C9E21E93C413006BEE71 /* SmartBricks.swift in Sources */,
 				62CCA8CE1E95848E00F00B80 /* BinaryReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
