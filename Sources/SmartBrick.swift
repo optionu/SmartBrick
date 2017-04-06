@@ -10,9 +10,19 @@ import Foundation
 
 // Enum instead?
 public protocol SmartBrick {
+    var identifier: UUID { get }
+    var name: String? { get }
 }
 
 open class SBrick: SmartBrick {
+    open var identifier: UUID
+    open let name: String?
+    
+    public init(identifier: UUID, name: String?) {
+        self.identifier = identifier
+        self.name = name
+    }
+    
     public enum Port: Int {
         case A, B, C, D
     }

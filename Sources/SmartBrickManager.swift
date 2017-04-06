@@ -28,7 +28,7 @@ public final class SmartBrickManager {
     // https://github.com/Stolpersteine/stolpersteine-ios/commit/cece6e39cf63d2415beb92ecde6afd1454d564f7#diff-12e03f696d3c073de86e0a3dd24808e6
     // async?
     public func findNearestDevice(rememberLastDevice: Bool, completionHandler: (SmartBrick?) -> Void) {
-        completionHandler(SBrick())
+        completionHandler(nil)
     }
 }
 
