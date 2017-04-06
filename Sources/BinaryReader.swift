@@ -9,7 +9,7 @@
 import Foundation
 
 class BinaryReader {
-    private var position = 0
+    private(set) var position = 0
     let data: Data
     let bigEndian: Bool
     
