@@ -1,0 +1,31 @@
+//
+//  SmartBricks.swift
+//  SmartBricks
+//
+//  Created by Claus Höfele on {TODAY}.
+//  Copyright © 2017 SmartBricks. All rights reserved.
+//
+
+import Foundation
+import CoreBluetooth
+
+public final class SmartBricksManager {
+    private let deviceController: SmartBricksController
+    private let central: CBCentralManager
+
+    public init() {
+        deviceController = SmartBricksController()
+        central = CBCentralManager(delegate: deviceController, queue: nil)
+    }
+
+    public func scanForDevices() {
+        deviceController.scanForDevices(central)
+    }
+
+    // nearest in SpheroManager
+    // https://github.com/Stolpersteine/stolpersteine-ios/commit/cece6e39cf63d2415beb92ecde6afd1454d564f7#diff-12e03f696d3c073de86e0a3dd24808e6
+    // async?
+    public func findNearestDevice(rememberLastDevice: Bool, completionHandler: (SmartBrick?) -> Void) {
+        completionHandler(nil)
+    }
+}
