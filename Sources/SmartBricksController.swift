@@ -9,9 +9,15 @@
 import Foundation
 import CoreBluetooth
 
+protocol SmartBricksControllerDelegate: class {
+    func smartBricksController(_ smartBricksController: SmartBricksController, didDiscover smartBrick: SmartBrick)
+}
+
 class SmartBricksController: NSObject, CBCentralManagerDelegate {
     private var shouldBeScanning = false
     private var discoveredPeripherals: [UUID: CBPeripheral] = [:]
+
+    var delegate: SmartBricksControllerDelegate?
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print("centralManagerDidUpdateState \(central.state.rawValue)")
@@ -38,9 +44,10 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
         //        }
         //        CFRunLoopWakeUp(CFRunLoopGetMain())
         //        print("didDiscover \(peripheral.identifier) \(peripheral.name) \(advertisementData)")
+        print("didDiscover")
         if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
             let smartBrick = SBrick(identifier: peripheral.identifier, name: peripheral.name, manufacturerData: manufacturerData) {
-            print("Found \(smartBrick.name ?? "<unknown>") \(smartBrick.identifier)")
+            delegate?.smartBricksController(self, didDiscover: smartBrick)
         }
     }
 

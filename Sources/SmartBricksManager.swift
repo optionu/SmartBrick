@@ -9,17 +9,23 @@
 import Foundation
 import CoreBluetooth
 
-public final class SmartBricksManager {
-    private let deviceController: SmartBricksController
+public protocol SmartBricksManagerDelegate: class {
+    func smartBricksManager(_ smartBricksManager: SmartBricksManager, didDiscover smartBrick: SmartBrick)
+}
+
+public final class SmartBricksManager: SmartBricksControllerDelegate {
+    public var delegate: SmartBricksManagerDelegate?
+
+    private let controller: SmartBricksController
     private let central: CBCentralManager
 
     public init() {
-        deviceController = SmartBricksController()
-        central = CBCentralManager(delegate: deviceController, queue: nil)
+        controller = SmartBricksController()
+        central = CBCentralManager(delegate: controller, queue: nil)
     }
 
     public func scanForDevices() {
-        deviceController.scanForDevices(central)
+        controller.scanForDevices(central)
     }
 
     // nearest in SpheroManager
@@ -27,5 +33,9 @@ public final class SmartBricksManager {
     // async?
     public func findNearestDevice(rememberLastDevice: Bool, completionHandler: (SmartBrick?) -> Void) {
         completionHandler(nil)
+    }
+
+    func smartBricksController(_ smartBricksController: SmartBricksController, didDiscover smartBrick: SmartBrick) {
+        delegate?.smartBricksManager(self, didDiscover: smartBrick)
     }
 }
