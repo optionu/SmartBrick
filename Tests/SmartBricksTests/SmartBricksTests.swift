@@ -10,6 +10,15 @@ import XCTest
 @testable import SmartBricks
 
 class SmartBricksTests: XCTestCase {
+    func testSBrickInit() {
+        let name = "name"
+        let identifier = UUID()
+        let sbrick = SBrick(identifier: identifier, name: name, manufacturerData: Data(bytes: [0x98, 0x01]))
+
+        XCTAssertEqual(sbrick?.name, name)
+        XCTAssertEqual(sbrick?.identifier, identifier)
+    }
+
     func testIsValidDeviceSBrick() {
         let manufacturerData = Data(bytes: [0x98, 0x01,
                                             0x06, 0x00, 0x00, 0x0b, 0x00, 0x0b, 0x12,
