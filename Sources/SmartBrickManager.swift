@@ -63,7 +63,7 @@ class DeviceController: NSObject, CBCentralManagerDelegate {
 //        print("didDiscover \(peripheral.identifier) \(peripheral.name) \(advertisementData)")
         if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
             let smartBrick = SBrick(identifier: peripheral.identifier, name: peripheral.name, manufacturerData: manufacturerData) {
-            print("Found \(smartBrick.name) \(smartBrick.identifier)")
+            print("Found \(smartBrick.name ?? "<unknown>") \(smartBrick.identifier)")
         }
     }
 
