@@ -8,13 +8,17 @@
 
 import Foundation
 
-class NearestDeviceHelper: SmartBricksManagerDelegate {
-    let timeout: TimeInterval
+open class NearestDeviceHelper: SmartBricksManagerDelegate {
+    open let timeout: TimeInterval
+    open private(set) var completionBlock: ((SmartBrick?) -> Void)
 
-    init(timeout: TimeInterval) {
+    public init(timeout: TimeInterval, completionBlock: @escaping ((SmartBrick?) -> Void)) {
         self.timeout = timeout
+        self.completionBlock = completionBlock
     }
 
-    func smartBricksManager(_ smartBricksManager: SmartBricksManager, didDiscover smartBrick: SmartBrick) {
+    open func smartBricksManager(_ smartBricksManager: SmartBricksManager, didDiscover smartBrick: SmartBrick) {
+        smartBricksManager.stopScanning()
+        completionBlock(smartBrick)
     }
 }

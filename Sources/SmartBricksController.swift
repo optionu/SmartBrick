@@ -17,7 +17,7 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
     private var shouldBeScanning = false
     private var discoveredPeripherals: [UUID: CBPeripheral] = [:]
 
-    var delegate: SmartBricksControllerDelegate?
+    weak var delegate: SmartBricksControllerDelegate?
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print("centralManagerDidUpdateState \(central.state.rawValue)")
@@ -54,6 +54,8 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
     func scanForDevices(_ central: CBCentralManager) {
         // Indicate that we should be scanning so delegate callbacks will start a scan if we can't right now.
         shouldBeScanning = true
+        
+        print("try to scanForDevices")
 
         // This method can only do anything if the CBCentralManager is poweredOn.
         // It doesn't need to do anything else if it's already scanning.
@@ -66,6 +68,8 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
     }
 
     func stopScanning(_ central: CBCentralManager) {
+        print("stopScanning")
+        
         // Indicate that we shouldn't be scanning so delegate callbacks won't start a scan if we're not scanning right now.
         shouldBeScanning = false
 

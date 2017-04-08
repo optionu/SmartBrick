@@ -4,15 +4,9 @@ import PlaygroundSupport
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
-let smartBricksManager = SmartBricksManager()
-smartBricksManager.scanForDevices()
-
-class Delegate: SmartBricksManagerDelegate {
-    func smartBricksManager(_ smartBricksManager: SmartBricksManager, didDiscover smartBrick: SmartBrick) {
-        print("Found \(smartBrick.name ?? "<unknown>") \(smartBrick.identifier)")
-    }
+let nearestDeviceHelper = NearestDeviceHelper(timeout: 5)  { smartBrick in
+    print("Connected to \(smartBrick?.name ?? "<unknown>")")
 }
-
-let userDefaults = UserDefaults()
-userDefaults.set("test", forKey: "test")
-userDefaults.string(forKey: "test")
+let smartBricksManager = SmartBricksManager()
+smartBricksManager.delegate = nearestDeviceHelper
+smartBricksManager.scanForDevices()
