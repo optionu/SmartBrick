@@ -16,6 +16,7 @@ protocol SmartBricksControllerDelegate: class {
 class SmartBricksController: NSObject, CBCentralManagerDelegate {
     fileprivate let central: CBCentralManager
     fileprivate var shouldBeScanning = false
+    fileprivate var connectingDevices = [UUID: () -> Void]()
 
     weak var delegate: SmartBricksControllerDelegate?
     
@@ -70,14 +71,27 @@ extension SmartBricksController {
 }
 
 extension SmartBricksController {
-    func connect(peripheral: CBPeripheral, completionHandler: @escaping ((SmartBrick?) -> Void)) {
+    func connect(peripheral: CBPeripheral, completionHandler: @escaping (() -> Void)) {
+        print("connect")
+        connectingDevices[peripheral.identifier] = completionHandler
         central.connect(peripheral)
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        
+        print("didConnect")
+        if let completionBlock = connectingDevices[peripheral.identifier] {
+            print("didConnect completionBlock")
+            connectingDevices[peripheral.identifier] = nil
+            completionBlock()
+        }
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print("didFailToConnect")
+        if let completionBlock = connectingDevices[peripheral.identifier] {
+            print("didFailToConnect completionBlock")
+            connectingDevices[peripheral.identifier] = nil
+            completionBlock()
+        }
     }
 }
