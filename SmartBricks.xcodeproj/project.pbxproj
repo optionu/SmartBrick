@@ -18,6 +18,8 @@
 		039CD99A1E92A4B9006D4992 /* SmartBricksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039CD9951E92A4A2006D4992 /* SmartBricksTests.swift */; };
 		039CD99B1E92A4BC006D4992 /* SmartBricksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039CD9911E92A4A2006D4992 /* SmartBricksManager.swift */; };
 		52D6D9871BEFF229002C0205 /* SmartBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* SmartBricks.framework */; };
+		6250A6A11E9ACA9F007934FB /* SmartBricksManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250A6A01E9ACA9F007934FB /* SmartBricksManagerTests.swift */; };
+		6250A6A21E9ACA9F007934FB /* SmartBricksManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250A6A01E9ACA9F007934FB /* SmartBricksManagerTests.swift */; };
 		62CCA8CD1E95848E00F00B80 /* BinaryReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CCA8CC1E95848E00F00B80 /* BinaryReader.swift */; };
 		62CCA8CE1E95848E00F00B80 /* BinaryReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CCA8CC1E95848E00F00B80 /* BinaryReader.swift */; };
 		62CCA8D01E9587E200F00B80 /* BinaryReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62CCA8CF1E9587E200F00B80 /* BinaryReaderTests.swift */; };
@@ -51,6 +53,7 @@
 		52D6D97C1BEFF229002C0205 /* SmartBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SmartBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* SmartBricks-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SmartBricks-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6DA0F1BF000BD002C0205 /* SmartBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SmartBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6250A6A01E9ACA9F007934FB /* SmartBricksManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBricksManagerTests.swift; sourceTree = "<group>"; };
 		62CCA8CC1E95848E00F00B80 /* BinaryReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryReader.swift; sourceTree = "<group>"; };
 		62CCA8CF1E9587E200F00B80 /* BinaryReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryReaderTests.swift; sourceTree = "<group>"; };
 		AD2FAA261CD0B6D800659CF4 /* SmartBricks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SmartBricks.plist; sourceTree = "<group>"; };
@@ -95,11 +98,11 @@
 		039CD9901E92A4A2006D4992 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				039CD9911E92A4A2006D4992 /* SmartBricksManager.swift */,
-				034CFE741E97BE4C004F43DF /* SmartBricksController.swift */,
+				62CCA8CC1E95848E00F00B80 /* BinaryReader.swift */,
 				034CFE771E97BF14004F43DF /* NearestDeviceHelper.swift */,
 				0392C9E01E93C2DD006BEE71 /* SmartBricks.swift */,
-				62CCA8CC1E95848E00F00B80 /* BinaryReader.swift */,
+				034CFE741E97BE4C004F43DF /* SmartBricksController.swift */,
+				039CD9911E92A4A2006D4992 /* SmartBricksManager.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -115,8 +118,9 @@
 		039CD9941E92A4A2006D4992 /* SmartBricksTests */ = {
 			isa = PBXGroup;
 			children = (
-				039CD9951E92A4A2006D4992 /* SmartBricksTests.swift */,
 				62CCA8CF1E9587E200F00B80 /* BinaryReaderTests.swift */,
+				6250A6A01E9ACA9F007934FB /* SmartBricksManagerTests.swift */,
+				039CD9951E92A4A2006D4992 /* SmartBricksTests.swift */,
 			);
 			path = SmartBricksTests;
 			sourceTree = "<group>";
@@ -356,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				039CD9991E92A4B8006D4992 /* SmartBricksTests.swift in Sources */,
+				6250A6A11E9ACA9F007934FB /* SmartBricksManagerTests.swift in Sources */,
 				62CCA8D01E9587E200F00B80 /* BinaryReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				039CD99A1E92A4B9006D4992 /* SmartBricksTests.swift in Sources */,
+				6250A6A21E9ACA9F007934FB /* SmartBricksManagerTests.swift in Sources */,
 				62CCA8D11E9587E200F00B80 /* BinaryReaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
