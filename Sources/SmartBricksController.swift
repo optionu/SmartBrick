@@ -14,9 +14,8 @@ protocol SmartBricksControllerDelegate: class {
 }
 
 class SmartBricksController: NSObject, CBCentralManagerDelegate {
-    private let central: CBCentralManager
-    private var shouldBeScanning = false
-    private var discoveredPeripherals: [UUID: CBPeripheral] = [:]
+    fileprivate let central: CBCentralManager
+    fileprivate var shouldBeScanning = false
 
     weak var delegate: SmartBricksControllerDelegate?
     
@@ -25,7 +24,7 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
         super.init()
         central.delegate = self
     }
-
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print("centralManagerDidUpdateState \(central.state.rawValue)")
 
@@ -42,23 +41,16 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
             break
         }
     }
+}
 
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi: NSNumber) {
-        discoveredPeripherals[peripheral.identifier] = peripheral
-        print("didDiscover")
-        if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
-            let smartBrick = SBrick(identifier: peripheral.identifier, name: peripheral.name, manufacturerData: manufacturerData) {
-            delegate?.smartBricksController(self, didDiscover: smartBrick)
-        }
-    }
-
+extension SmartBricksController {
     func scanForDevices() {
         // Indicate that we should be scanning so delegate callbacks will start a scan if we can't right now.
         shouldBeScanning = true
         
         central.scanForPeripherals(withServices: nil, options: nil)
     }
-
+    
     func stopScanning() {
         print("stopScanning")
         
@@ -66,5 +58,26 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
         shouldBeScanning = false
         
         central.stopScan()
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi: NSNumber) {
+        print("didDiscover")
+        if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
+            let smartBrick = SBrick(peripheral: peripheral, manufacturerData: manufacturerData) {
+            delegate?.smartBricksController(self, didDiscover: smartBrick)
+        }
+    }
+}
+
+extension SmartBricksController {
+    func connect(peripheral: CBPeripheral, completionHandler: @escaping ((SmartBrick?) -> Void)) {
+        central.connect(peripheral)
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        
+    }
+
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
     }
 }

@@ -7,26 +7,24 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 // Enum instead?
 public protocol SmartBrick {
-    var identifier: UUID { get }
-    var name: String? { get }
+    var peripheral: CBPeripheral { get }
 }
 
 open class SBrick: SmartBrick {
-    open var identifier: UUID
-    open let name: String?
-
+    public let peripheral: CBPeripheral
+    
     public enum Port: Int {
         case A, B, C, D
     }
     
-    public init?(identifier: UUID, name: String?, manufacturerData: Data) {
+    public init?(peripheral: CBPeripheral, manufacturerData: Data) {
         guard SBrick.isValidDevice(manufacturerData: manufacturerData) else { return nil }
         
-        self.identifier = identifier
-        self.name = name
+        self.peripheral = peripheral
     }
     
     class func isValidDevice(manufacturerData: Data) -> Bool {
