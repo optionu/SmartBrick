@@ -24,8 +24,8 @@ public final class SmartBricksManager: SmartBricksControllerDelegate {
         controller.delegate = self
     }
     
-    public func connectToNearestDevice(timeout: TimeInterval, completionBlock: @escaping ((SmartBrick?) -> Void)) {
-        deviceHelper = NearestDeviceHelper(timeout: timeout)  { smartBrick in
+    public func connectToNearestDevice(completionBlock: @escaping ((SmartBrick?) -> Void)) {
+        deviceHelper = NearestDeviceHelper()  { smartBrick in
             self.controller.delegate = self
             self.deviceHelper = nil
             

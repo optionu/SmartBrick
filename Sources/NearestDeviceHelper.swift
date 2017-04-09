@@ -9,11 +9,9 @@
 import Foundation
 
 class NearestDeviceHelper: SmartBricksControllerDelegate {
-    let timeout: TimeInterval
     let completionBlock: ((SmartBrick?) -> Void)
 
-    init(timeout: TimeInterval, completionBlock: @escaping ((SmartBrick?) -> Void)) {
-        self.timeout = timeout
+    init(completionBlock: @escaping ((SmartBrick?) -> Void)) {
         self.completionBlock = completionBlock
     }
 
