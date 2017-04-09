@@ -14,10 +14,17 @@ protocol SmartBricksControllerDelegate: class {
 }
 
 class SmartBricksController: NSObject, CBCentralManagerDelegate {
+    private let central: CBCentralManager
     private var shouldBeScanning = false
     private var discoveredPeripherals: [UUID: CBPeripheral] = [:]
 
     weak var delegate: SmartBricksControllerDelegate?
+    
+    override init() {
+        central = CBCentralManager(delegate: nil, queue: nil)
+        super.init()
+        central.delegate = self
+    }
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print("centralManagerDidUpdateState \(central.state.rawValue)")
@@ -25,10 +32,10 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
         switch central.state {
         case .poweredOn:
             if shouldBeScanning {
-                scanForDevices(central)
+                scanForDevices()
             }
         case .poweredOff:
-            stopScanning(central)
+            break
         case .resetting:
             break
         case .unauthorized, .unknown, .unsupported:
@@ -38,12 +45,6 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi: NSNumber) {
         discoveredPeripherals[peripheral.identifier] = peripheral
-
-        //        CFRunLoopPerformBlock(CFRunLoopGetMain(), CFRunLoopMode.commonModes.rawValue) {
-        //            self.delegate?.spheroManager(self, didDiscover: SpheroDescription(name: peripheral.name, identifier: peripheral.identifier, rssi: rssi.intValue))
-        //        }
-        //        CFRunLoopWakeUp(CFRunLoopGetMain())
-        //        print("didDiscover \(peripheral.identifier) \(peripheral.name) \(advertisementData)")
         print("didDiscover")
         if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
             let smartBrick = SBrick(identifier: peripheral.identifier, name: peripheral.name, manufacturerData: manufacturerData) {
@@ -51,31 +52,18 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
         }
     }
 
-    func scanForDevices(_ central: CBCentralManager) {
+    func scanForDevices() {
         // Indicate that we should be scanning so delegate callbacks will start a scan if we can't right now.
         shouldBeScanning = true
         
-        print("try to scanForDevices")
-
-        // This method can only do anything if the CBCentralManager is poweredOn.
-        // It doesn't need to do anything else if it's already scanning.
-        // If either of those things are true, return early.
-        guard central.state == .poweredOn else { return }
-        //&& !central.isScanning else { return }
-
-        print("scanForDevices")
         central.scanForPeripherals(withServices: nil, options: nil)
     }
 
-    func stopScanning(_ central: CBCentralManager) {
+    func stopScanning() {
         print("stopScanning")
         
         // Indicate that we shouldn't be scanning so delegate callbacks won't start a scan if we're not scanning right now.
         shouldBeScanning = false
-
-        // This method can only do anything if the CBCentralManager is currently scanning.
-        // If we aren't, then this method can just return without doing anything.
-        //        guard central.isScanning else { return }
         
         central.stopScan()
     }

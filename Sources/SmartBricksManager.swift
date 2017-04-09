@@ -17,20 +17,30 @@ public final class SmartBricksManager: SmartBricksControllerDelegate {
     public weak var delegate: SmartBricksManagerDelegate?
 
     private let controller: SmartBricksController
-    private let central: CBCentralManager
+    private var deviceHelper: SmartBricksControllerDelegate?
 
     public init() {
         controller = SmartBricksController()
-        central = CBCentralManager(delegate: controller, queue: nil)
         controller.delegate = self
     }
     
+    public func connectToNearestDevice(timeout: TimeInterval, completionBlock: @escaping ((SmartBrick?) -> Void)) {
+        deviceHelper = NearestDeviceHelper(timeout: timeout)  { smartBrick in
+            self.controller.delegate = self
+            self.deviceHelper = nil
+            
+            completionBlock(smartBrick)
+        }
+        controller.delegate = deviceHelper
+        controller.scanForDevices()
+    }
+    
     public func scanForDevices() {
-        controller.scanForDevices(central)
+        controller.scanForDevices()
     }
     
     public func stopScanning() {
-        controller.stopScanning(central)
+        controller.stopScanning()
     }
 
     func smartBricksController(_ smartBricksController: SmartBricksController, didDiscover smartBrick: SmartBrick) {
