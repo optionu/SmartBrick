@@ -18,7 +18,7 @@ private let remoteControlCharacteristicUUIDs = [quickDriveCharacteristicUUID, re
 open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     public let peripheral: CBPeripheral
     private var completionBlock: (() -> Void)?
-    private var remoteControlCommandsCharacteristic: CBCharacteristic?
+    fileprivate var remoteControlCommandsCharacteristic: CBCharacteristic?
     fileprivate var quickDriveCharacteristic: CBCharacteristic?
     
     public init?(peripheral: CBPeripheral, manufacturerData: Data) {
@@ -104,5 +104,24 @@ extension SBrick {
             let data = Data(bytes: [0xFF, 0xFF, 0xFF, 0xFF]) // A, C, B, D
             peripheral.writeValue(data, for: quickDriveCharacteristic, type: .withoutResponse)
         }
+    }
+}
+
+extension SBrick {
+    // Letters are numbered according to SBrick app; numbers match channels
+    public enum Channel: UInt8 {
+        case a = 0, b = 2, c = 1, d = 3, voltage = 8, temperature = 9
+    }
+    
+    open func retrieveSensorValue(channel: Channel) {
+        if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
+            let data = Data(bytes: [0x0F, channel.rawValue])
+            peripheral.writeValue(data, for: remoteControlCommandsCharacteristic, type: .withoutResponse)
+            peripheral.readValue(for: remoteControlCommandsCharacteristic)
+        }
+    }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("didUpdateValueFor \(String(describing: characteristic.value))")
     }
 }

@@ -10,6 +10,7 @@ smartBricksManager.connectToNearestDevice() { smartBrick in
     case let sbrick as SBrick:
         print("Connected to \(sbrick.peripheral.name ?? "<unknown>") \(sbrick.peripheral.state)")
         sbrick.updateQuickDrive()
+        sbrick.retrieveSensorValue(channel: .voltage)
     default:
         print("No smart brick found")
     }
