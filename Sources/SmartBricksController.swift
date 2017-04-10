@@ -63,9 +63,12 @@ extension SmartBricksController {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi: NSNumber) {
         print("didDiscover")
-        if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
-            let smartBrick = SBrick(peripheral: peripheral, manufacturerData: manufacturerData) {
-            delegate?.smartBricksController(self, didDiscover: smartBrick)
+        if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
+            if let smartBrick = SBrick(peripheral: peripheral, manufacturerData: manufacturerData) {
+                delegate?.smartBricksController(self, didDiscover: smartBrick)
+            } else if let smartBrick = SBrickPlus(peripheral: peripheral, manufacturerData: manufacturerData) {
+                delegate?.smartBricksController(self, didDiscover: smartBrick)
+            }
         }
     }
 }

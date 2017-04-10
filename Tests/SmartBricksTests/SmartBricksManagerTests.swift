@@ -10,14 +10,14 @@ import XCTest
 import SmartBricks
 
 class SmartBricksManagerTests: XCTestCase {
-    func testConnectToNearestDevice() {
-        let testExpectation = expectation(description: "testConnectToNearestDevice")
-        
-        let smartBricksManager = SmartBricksManager()
-        smartBricksManager.connectToNearestDevice() { smartBrick in
-            testExpectation.fulfill()
-        }
-        
-        waitForExpectations(timeout: 10)
-    }
+//    func testConnectToNearestDevice() {
+//        let testExpectation = expectation(description: "testConnectToNearestDevice")
+//        
+//        let smartBricksManager = SmartBricksManager()
+//        smartBricksManager.connectToNearestDevice() { smartBrick in
+//            testExpectation.fulfill()
+//        }
+//        
+//        waitForExpectations(timeout: 10)
+//    }
 }
