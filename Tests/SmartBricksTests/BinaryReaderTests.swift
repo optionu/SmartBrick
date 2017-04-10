@@ -50,12 +50,32 @@ class BinaryReaderTests: XCTestCase {
         let data = Data(bytes: [0x01])
         let binaryReader = BinaryReader(withData: data)
 
+        XCTAssertEqual(binaryReader.position, 0)
         XCTAssertTrue(binaryReader.canRead(numberOfBytes:1))
         binaryReader.advance(byNumberOfBytes: 1)
+        XCTAssertEqual(binaryReader.position, 1)
         XCTAssertFalse(binaryReader.canRead(numberOfBytes:1))
     }
+
+    func testReset() {
+        let data = Data(bytes: [0x01])
+        let binaryReader = BinaryReader(withData: data)
+        
+        binaryReader.advance(byNumberOfBytes: 1)
+        XCTAssertEqual(binaryReader.position, 1)
+        binaryReader.reset()
+        XCTAssertEqual(binaryReader.position, 0)
+    }
     
-    // SBrick: length + type + data
+    func testPosition() {
+        let data = Data(bytes: [0x01])
+        let binaryReader = BinaryReader(withData: data)
+        
+        binaryReader.position(atNumberOfBytes: 1)
+        XCTAssertEqual(binaryReader.position, 1)
+        binaryReader.position(atNumberOfBytes: 0)
+        XCTAssertEqual(binaryReader.position, 0)
+    }
 }
 
 #if os(Linux)

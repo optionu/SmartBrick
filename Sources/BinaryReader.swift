@@ -22,6 +22,16 @@ class BinaryReader {
         return position + bytes <= data.count
     }
     
+    func reset() {
+        position = 0
+    }
+    
+    func position(atNumberOfBytes bytes: Int) {
+        precondition(position <= data.count)
+        
+        position = bytes
+    }
+    
     func advance(byNumberOfBytes bytes: Int) {
         precondition(canRead(numberOfBytes: bytes))
         
