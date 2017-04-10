@@ -1,8 +1,8 @@
 //
-//  SBrick.swift
+//  SBricks.swift
 //  SmartBricks
 //
-//  Created by Claus Höfele on 04/04/17.
+//  Created by Claus Höfele on 10.04.17.
 //  Copyright © 2017 SmartBricks. All rights reserved.
 //
 
@@ -15,23 +15,11 @@ private let quickDriveCharacteristicUUID = CBUUID(string: "489a6ae0-c1ab-4c9c-bd
 private let remoteControlCommandsCharacteristicUUID = CBUUID(string: "02b8cbcc-0e25-4bda-8790-a15f53e6010f")
 private let remoteControlCharacteristicUUIDs = [quickDriveCharacteristicUUID, remoteControlCommandsCharacteristicUUID]
 
-// Enum instead?
-public protocol SmartBrick {
-    var peripheral: CBPeripheral { get }
-    
-    func prepareConnection(completionHandler: @escaping (() -> Void))
-}
-
 open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     public let peripheral: CBPeripheral
     private var completionBlock: (() -> Void)?
     private var remoteControlCommandsCharacteristic: CBCharacteristic?
     fileprivate var quickDriveCharacteristic: CBCharacteristic?
-    
-    // Letters are numbered according to SBrick app; numbers match channels
-    public enum Channel: Int {
-        case A = 0, B = 2, C = 1, D = 3
-    }
     
     public init?(peripheral: CBPeripheral, manufacturerData: Data) {
         guard SBrick.isValidDevice(manufacturerData: manufacturerData) else { return nil }
@@ -105,9 +93,9 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
         }
     }
     
-//    open func retrieveSensorValue(port: Port)
-//    open func startReceivingSensorValues(port: Port)
-//    open func updateActuator(value: Double, atPort: Port)
+    //    open func retrieveSensorValue(port: Port)
+    //    open func startReceivingSensorValues(port: Port)
+    //    open func updateActuator(value: Double, atPort: Port)
 }
 
 extension SBrick {
@@ -117,8 +105,4 @@ extension SBrick {
             peripheral.writeValue(data, for: quickDriveCharacteristic, type: .withoutResponse)
         }
     }
-}
-
-open class SBrickPlus: SBrick {
-
 }
