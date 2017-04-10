@@ -9,11 +9,11 @@
 import Foundation
 import CoreBluetooth
 
-private let remoteControlService = CBUUID(string:"4dc591b0-857c-41de-b5f1-15abda665b0c")
-private let services = [remoteControlService]
-private let quickDriveCharacteristic = CBUUID(string: "489a6ae0-c1ab-4c9c-bdb2-11d373c1b7fb")
-private let remoteControlCommandsCharacteristic = CBUUID(string: "02b8cbcc-0e25-4bda-8790-a15f53e6010f")
-private let remoteControlCharacteristics = [quickDriveCharacteristic, remoteControlCommandsCharacteristic]
+private let remoteControlServiceUUID = CBUUID(string:"4dc591b0-857c-41de-b5f1-15abda665b0c")
+private let servicesUUIDs = [remoteControlServiceUUID]
+private let quickDriveCharacteristicUUID = CBUUID(string: "489a6ae0-c1ab-4c9c-bdb2-11d373c1b7fb")
+private let remoteControlCommandsCharacteristicUUID = CBUUID(string: "02b8cbcc-0e25-4bda-8790-a15f53e6010f")
+private let remoteControlCharacteristicUUIDs = [quickDriveCharacteristicUUID, remoteControlCommandsCharacteristicUUID]
 
 // Enum instead?
 public protocol SmartBrick {
@@ -25,6 +25,8 @@ public protocol SmartBrick {
 open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     public let peripheral: CBPeripheral
     private var completionBlock: (() -> Void)?
+    private var remoteControlCommandsCharacteristic: CBCharacteristic?
+    private var quickDriveCharacteristic: CBCharacteristic?
     
     public enum Port: Int {
         case A, B, C, D
@@ -38,10 +40,6 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
         super.init()
         
         peripheral.delegate = self
-    }
-    
-    deinit {
-        print("deinit")
     }
     
     class func isValidDevice(manufacturerData: Data) -> Bool {
@@ -64,7 +62,7 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     
     public func prepareConnection(completionHandler: @escaping (() -> Void)) {
         assert(peripheral.state == .connected)
-        print("discoverServices \(services)")
+        print("discoverServices \(servicesUUIDs)")
         
         completionBlock = completionHandler
         peripheral.discoverServices(nil)
@@ -76,9 +74,9 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
         if error == nil, let services = peripheral.services {
             for service in services {
                 switch service.uuid {
-                case remoteControlService:
+                case remoteControlServiceUUID:
                     print("discoverCharacteristics")
-                    peripheral.discoverCharacteristics(remoteControlCharacteristics, for: service)
+                    peripheral.discoverCharacteristics(remoteControlCharacteristicUUIDs, for: service)
                 default:
                     // This is a service we don't care about. Ignore it.
                     continue
@@ -90,7 +88,20 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         print("didDiscoverCharacteristics \(String(describing: error))")
         
-        completionBlock?()
+        for characteristic in service.characteristics ?? [] {
+            switch characteristic.uuid {
+            case remoteControlCommandsCharacteristicUUID:
+                remoteControlCommandsCharacteristic = characteristic
+            case quickDriveCharacteristicUUID:
+                quickDriveCharacteristic = characteristic
+            default:
+                assert(false, "Unknown characteristic")
+            }
+        }
+        
+        if remoteControlCommandsCharacteristic != nil && quickDriveCharacteristic != nil {
+            completionBlock?()
+        }
     }
     
 //    open func retrieveSensorValue(port: Port)
