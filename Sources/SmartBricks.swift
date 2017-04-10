@@ -19,7 +19,7 @@ private let remoteControlCharacteristics = [quickDriveCharacteristic, remoteCont
 public protocol SmartBrick {
     var peripheral: CBPeripheral { get }
     
-    func connect(completionHandler: @escaping (() -> Void))
+    func prepareConnection(completionHandler: @escaping (() -> Void))
 }
 
 open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
@@ -62,9 +62,9 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
         return true
     }
     
-    public func connect(completionHandler: @escaping (() -> Void)) {
+    public func prepareConnection(completionHandler: @escaping (() -> Void)) {
         assert(peripheral.state == .connected)
-        print("SmartBrick connect \(String(describing: peripheral.delegate)) \(services)")
+        print("discoverServices \(services)")
         
         completionBlock = completionHandler
         peripheral.discoverServices(nil)
@@ -72,6 +72,7 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         print("didDiscoverServices \(String(describing: error))")
+        
         if error == nil, let services = peripheral.services {
             for service in services {
                 switch service.uuid {
@@ -88,6 +89,7 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         print("didDiscoverCharacteristics \(String(describing: error))")
+        
         completionBlock?()
     }
     
