@@ -26,10 +26,11 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     public let peripheral: CBPeripheral
     private var completionBlock: (() -> Void)?
     private var remoteControlCommandsCharacteristic: CBCharacteristic?
-    private var quickDriveCharacteristic: CBCharacteristic?
+    fileprivate var quickDriveCharacteristic: CBCharacteristic?
     
-    public enum Port: Int {
-        case A, B, C, D
+    // Letters are numbered according to SBrick app; numbers match channels
+    public enum Channel: Int {
+        case A = 0, B = 2, C = 1, D = 3
     }
     
     public init?(peripheral: CBPeripheral, manufacturerData: Data) {
@@ -107,7 +108,15 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
 //    open func retrieveSensorValue(port: Port)
 //    open func startReceivingSensorValues(port: Port)
 //    open func updateActuator(value: Double, atPort: Port)
+}
 
+extension SBrick {
+    open func updateQuickDrive() {
+        if let quickDriveCharacteristic = quickDriveCharacteristic {
+            let data = Data(bytes: [0xFF, 0xFF, 0xFF, 0xFF]) // A, C, B, D
+            peripheral.writeValue(data, for: quickDriveCharacteristic, type: .withoutResponse)
+        }
+    }
 }
 
 open class SBrickPlus: SBrick {

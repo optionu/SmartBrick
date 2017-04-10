@@ -6,9 +6,11 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 
 let smartBricksManager = SmartBricksManager()
 smartBricksManager.connectToNearestDevice() { smartBrick in
-    if let smartBrick = smartBrick {
-        print("Connected to \(smartBrick.peripheral.name ?? "<unknown>") \(smartBrick.peripheral.state)")
-    } else {
+    switch smartBrick {
+    case let sbrick as SBrick:
+        print("Connected to \(sbrick.peripheral.name ?? "<unknown>") \(sbrick.peripheral.state)")
+        sbrick.updateQuickDrive()
+    default:
         print("No smart brick found")
     }
 }
