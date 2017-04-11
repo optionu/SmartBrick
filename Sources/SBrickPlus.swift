@@ -16,11 +16,6 @@ open class SBrickPlus: SBrick {
 }
 
 extension SBrickPlus {
-    // Letters are numbered according to SBrick app; numbers match channels
-    public enum Channel: UInt8 {
-        case a = 0, b = 2, c = 1, d = 3, voltage = 8, temperature = 9
-    }
-    
     open func retrieveSensorValue(channel: Channel) {
         if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
             let data = Data(bytes: [0x0F, channel.rawValue])

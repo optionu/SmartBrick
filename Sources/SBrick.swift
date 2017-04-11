@@ -115,15 +115,25 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
         }
     }
     
-    //    open func retrieveSensorValue(port: Port)
-    //    open func startReceivingSensorValues(port: Port)
-    //    open func updateActuator(value: Double, atPort: Port)
+    //    open func retrieveSensorValue(for channel: Channel)
+    //    open func startReceivingSensorValues(for channel: Channel)
+    //    open func updateActuator(for channel: Channel, with value: UInt8)
 }
 
 extension SBrick {
-    open func updateQuickDrive() {
+    // Letters are numbered according to SBrick app; numbers match channels
+    public enum Channel: UInt8 {
+        case a = 0x00, b = 0x02, c = 0x01, d = 0x03
+    }
+
+    // Viewed from the drive end
+    public enum Direction: UInt8 {
+        case clockwise = 0x00, counterclockwise = 0x01
+    }
+
+    open func updateQuickDrive(value0: UInt8, direction0: Direction) {
         if let quickDriveCharacteristic = quickDriveCharacteristic {
-            let data = Data(bytes: [0xFF, 0xFF, 0xFF, 0xFF]) // A, C, B, D
+            let data = Data(bytes: [value0, value0, value0, value0]) // A, C, B, D
             peripheral.writeValue(data, for: quickDriveCharacteristic, type: .withoutResponse)
         }
     }
