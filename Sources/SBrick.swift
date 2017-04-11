@@ -26,7 +26,7 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     }
     
     init?(peripheral: CBPeripheral, manufacturerData: Data, shouldBePlus: Bool) {
-        guard SBrick.isValidDevice(manufacturerData: manufacturerData, shouldBePlus: shouldBePlus) else { return nil }
+        guard SBrick.isValidDevice(manufacturerData: manufacturerData, testForSBrickPlus: shouldBePlus) else { return nil }
         
         self.peripheral = peripheral
         
@@ -35,38 +35,42 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
         peripheral.delegate = self
     }
     
-    class func isValidDevice(manufacturerData: Data, shouldBePlus: Bool = false) -> Bool {
+    class func isValidDevice(manufacturerData: Data, testForSBrickPlus: Bool) -> Bool {
         let binaryReader = BinaryReader(withData: manufacturerData, bigEndian: true)
         
-        // Company identifier
+        // Check company identifier
         guard binaryReader.canRead(numberOfBytes: 2),
             binaryReader.readUInt16() == 0x9801 else { return false }
-        
-        // Valid data records
+
+        var isSBrickPlus = false
+
+        // Check for valid data records
         while (binaryReader.canRead(numberOfBytes: 1)) {
             let recordLength = Int(binaryReader.readUInt8())
             guard binaryReader.canRead(numberOfBytes: recordLength) else { return false }
             
             let position = binaryReader.position
             
-            // Test record identifier
+            // Check record identifier
             if recordLength == 6 && binaryReader.readUInt8() >= 0 && binaryReader.readUInt8() == 0x00 {
                 // HW 11+ means it's an SBrick Plus
-                let isSBrickPlus = binaryReader.readUInt8() >= 11
-                if shouldBePlus && !isSBrickPlus {
-                    return false
-                } else if !shouldBePlus && isSBrickPlus {
-                    return false
-                }
+                isSBrickPlus = binaryReader.readUInt8() >= 11
             }
             
             binaryReader.position(atNumberOfBytes: position)
             binaryReader.advance(byNumberOfBytes: recordLength)
         }
-        
-        return true
+
+        // Distinguish between SBrick and SBrick Plus
+        if testForSBrickPlus && !isSBrickPlus {
+            return false
+        } else if !testForSBrickPlus && isSBrickPlus {
+            return false
+        } else {
+            return true
+        }
     }
-    
+
     public func prepareConnection(completionHandler: @escaping (() -> Void)) {
         assert(peripheral.state == .connected)
         print("discoverServices \(servicesUUIDs)")

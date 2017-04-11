@@ -11,9 +11,6 @@ import CoreBluetooth
 
 open class SBrickPlus: SBrick {
     public init?(peripheral: CBPeripheral, manufacturerData: Data) {
-        if (peripheral.name?.hasPrefix("SBrick") == true) {
-            print("")
-        }
         super.init(peripheral: peripheral, manufacturerData: manufacturerData, shouldBePlus: true)
     }
 }
