@@ -97,4 +97,8 @@ extension SmartBricksController {
             completionBlock()
         }
     }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("didDisconnectPeripheral")
+    }
 }

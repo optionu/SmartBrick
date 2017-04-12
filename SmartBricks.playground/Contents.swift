@@ -2,37 +2,41 @@ import Cocoa
 import SmartBricks
 import PlaygroundSupport
 
-//PlaygroundPage.current.needsIndefiniteExecution = true
-
-//:
-
 class ViewController : NSViewController {
     override func loadView() {
-        let stackView = NSStackView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
+        let stackView = NSStackView(frame: CGRect(x: 0, y: 0, width: 300, height: 500))
+        stackView.orientation = .vertical
+        stackView.edgeInsets = EdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         self.view = stackView
         
-        let button0 = NSButton(title: "title0", target: nil, action: nil)
-        stackView.addView(button0, in:.center)
+        let firstRowStackView = NSStackView()
+        stackView.addView(firstRowStackView, in:.top)
+        let button0 = NSButton(title: "title0 asd", target: nil, action: nil)
+        firstRowStackView.addView(button0, in:.center)
         let button1 = NSButton(title: "title1", target: nil, action: nil)
-        stackView.addView(button1, in:.center)
-        let slider = NSSlider()
-        stackView.addView(slider, in:.center)
+        firstRowStackView.addView(button1, in:.center)
+        let slider = NSSlider(value: 0, minValue: 0, maxValue: 255, target: self, action: #selector(sliderChanged))
+        slider.isContinuous = false
+        firstRowStackView.addView(slider, in:.center)
+    }
+    
+    func sliderChanged(sender: NSSlider) {
+        print("\(connectedSmartBrick) \(sender.integerValue)")
+        connectedSmartBrick?.updateQuickDrive(value0: UInt8(sender.integerValue), direction0: .clockwise)
     }
 }
 let viewController = ViewController()
 PlaygroundPage.current.liveView = viewController
 
-//let smartBricksManager = SmartBricksManager()
-//smartBricksManager.connectToNearestDevice() { smartBrick in
-//    switch smartBrick {
-//    case let sbrick as SBrick:
-//        print("Connected to \(sbrick.peripheral.name ?? "<unknown>") \(sbrick.peripheral.state)")
-//        sbrick.updateQuickDrive(value0: 255, direction0: .clockwise)
-//    case let sbrick as SBrickPlus:
-//        print("Connected to \(sbrick.peripheral.name ?? "<unknown>") \(sbrick.peripheral.state)")
-//        sbrick.updateQuickDrive(value0: 255, direction0: .clockwise)
-//        sbrick.retrieveSensorValue(channel: .a)
-//    default:
-//        print("No smart brick found")
-//    }
-//}
+var connectedSmartBrick: SBrick?
+
+let smartBricksManager = SmartBricksManager()
+smartBricksManager.connectToNearestDevice() { smartBrick in
+    switch smartBrick {
+    case let sbrick as SBrick:
+        print("Connected to SB \(sbrick.peripheral.name ?? "<unknown>") \(sbrick.peripheral.state)")
+        connectedSmartBrick = sbrick
+    default:
+        print("No smart brick found")
+    }
+}
