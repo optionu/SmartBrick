@@ -24,6 +24,7 @@ smartBricksManager.connectToNearestDevice() { smartBrick in
     case let sbrick as SBrick:
         print("Connected to SBrick \"\(sbrick.peripheral.name ?? "<unknown>")\"")
         connectedSmartBrick = sbrick
+        viewController.connectionState = .connected
     default:
         print("No smart brick found")
     }

@@ -19,20 +19,20 @@
                                 <rect key="frame" x="0.0" y="104" width="250" height="169"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OKs-wc-wOT">
-                                        <rect key="frame" x="8" y="140" width="124" height="21"/>
+                                        <rect key="frame" x="8" y="140" width="144" height="21"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6zb-Fc-z2C">
-                                                <rect key="frame" x="-6" y="-7" width="112" height="32"/>
+                                                <rect key="frame" x="-6" y="-7" width="132" height="32"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="yX5-c6-Z0K"/>
+                                                    <constraint firstAttribute="width" constant="120" id="Ped-Io-uGs"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="adS-cN-OCg">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
-                                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="VQa-O9-Lmj">
-                                                <rect key="frame" x="108" y="2.5" width="16" height="16"/>
+                                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="VQa-O9-Lmj">
+                                                <rect key="frame" x="128" y="2.5" width="16" height="16"/>
                                             </progressIndicator>
                                         </subviews>
                                         <visibilityPriorities>
@@ -229,14 +229,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="connectButton" destination="6zb-Fc-z2C" id="X1e-5c-ENC"/>
+                        <outlet property="connectProgressIndicator" destination="VQa-O9-Lmj" id="NW0-I9-AGz"/>
                         <outlet property="sliderA" destination="kkk-Cu-fzf" id="57t-Cb-zQt"/>
                         <outlet property="sliderB" destination="qgv-pc-4rc" id="rng-KS-tEk"/>
                         <outlet property="sliderC" destination="vNf-fV-T38" id="HlT-Jg-Ef3"/>
                         <outlet property="sliderD" destination="urv-oU-z5W" id="8ih-Er-BMz"/>
-                        <outlet property="stopA" destination="Aue-Qf-7N5" id="0de-dK-Lhp"/>
-                        <outlet property="stopB" destination="aNr-cI-UKa" id="w8x-eL-sKW"/>
-                        <outlet property="stopC" destination="2vh-PO-9Rk" id="hbE-bq-32l"/>
-                        <outlet property="stopD" destination="COb-JA-hc5" id="nlF-c5-0WR"/>
+                        <outlet property="stopButtonA" destination="Aue-Qf-7N5" id="CMp-T4-17K"/>
+                        <outlet property="stopButtonB" destination="aNr-cI-UKa" id="bJf-zg-zma"/>
+                        <outlet property="stopButtonC" destination="2vh-PO-9Rk" id="y7s-8F-B8v"/>
+                        <outlet property="stopButtonD" destination="COb-JA-hc5" id="S0J-eO-q1T"/>
                     </connections>
                 </viewController>
                 <customObject id="FeK-B1-3dV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
