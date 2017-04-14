@@ -135,9 +135,10 @@ extension SBrick {
         case clockwise = 0x00, counterclockwise = 0x01
     }
 
-    open func updateDrive(channel: Channel, value: UInt8, direction: Direction) {
+    // Min power for motor is 110
+    open func updateDrive(channel: Channel, power: UInt8, direction: Direction) {
         if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
-            let data = Data(bytes: [0x01, channel.rawValue, direction.rawValue, value])
+            let data = Data(bytes: [0x01, channel.rawValue, direction.rawValue, power])
             peripheral.writeValue(data, for: remoteControlCommandsCharacteristic, type: .withoutResponse)
         }
     }
@@ -151,9 +152,9 @@ extension SBrick {
 }
 
 extension SBrick {
-    open func updateQuickDrive(value0: UInt8, direction0: Direction) {
+    open func updateQuickDrive(power0: UInt8, direction0: Direction) {
         if let quickDriveCharacteristic = quickDriveCharacteristic {
-            let data = Data(bytes: [value0, value0, value0, value0]) // A, C, B, D
+            let data = Data(bytes: [power0, power0, power0, power0]) // A, C, B, D
             peripheral.writeValue(data, for: quickDriveCharacteristic, type: .withoutResponse)
         }
     }

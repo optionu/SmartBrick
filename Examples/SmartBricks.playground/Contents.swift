@@ -10,11 +10,12 @@ PlaygroundPage.current.liveView = viewController
 
 var connectedSmartBrick: SBrick?
 
-viewController.updateActuator = { channelValue, value in
-    value
-//    connectedSmartBrick?.updateQuickDrive(value0: UInt8(value), direction0: .clockwise)
+viewController.updateActuator = { channelValue, powerValue in
     let channel = SBrick.Channel(rawValue: UInt8(channelValue)) ?? .a
-    connectedSmartBrick?.updateDrive(channel: channel, value: UInt8(value), direction: .clockwise)
+    let power = UInt8(abs(powerValue))
+    let direction: SBrick.Direction = powerValue > 0 ? .clockwise : .counterclockwise
+    connectedSmartBrick?.updateDrive(channel: channel, power: power, direction: direction)
+//    connectedSmartBrick?.updateQuickDrive(power0: power, direction0: direction)
 }
 
 let smartBricksManager = SmartBricksManager()
