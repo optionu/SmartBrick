@@ -11,15 +11,14 @@ import Cocoa
 open class SmartBricksViewController: NSViewController {
     @IBOutlet weak var sliderA: NSSlider!
     
-    open var sliderChanged: ((Int) -> Void)?
-    open var stop: (() -> Void)?
+    open var updateActuator: ((Int) -> Void)?
     
     @IBAction func sliderAChanged(_ sender: NSSlider) {
-        sliderChanged?(sender.integerValue)
+        updateActuator?(sender.integerValue)
     }
     
     @IBAction func stopA(_ sender: NSButton) {
         sliderA.integerValue = 0
-        stop?()
+        updateActuator?(0)
     }
 }

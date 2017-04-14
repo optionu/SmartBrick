@@ -122,15 +122,35 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
 
 extension SBrick {
     // Letters are numbered according to SBrick app; numbers match channels
+    // --o--
+    // aa bb
+    // cc dd
+    // --|--
     public enum Channel: UInt8 {
         case a = 0x00, b = 0x02, c = 0x01, d = 0x03
     }
-
+    
     // Viewed from the drive end
     public enum Direction: UInt8 {
         case clockwise = 0x00, counterclockwise = 0x01
     }
 
+    open func updateDrive(channel: Channel, value: UInt8, direction: Direction) {
+        if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
+            let data = Data(bytes: [0x01, channel.rawValue, direction.rawValue, value])
+            peripheral.writeValue(data, for: remoteControlCommandsCharacteristic, type: .withoutResponse)
+        }
+    }
+    
+    open func updateBreak(channel: Channel) {
+        if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
+            let data = Data(bytes: [0x00, channel.rawValue])
+            peripheral.writeValue(data, for: remoteControlCommandsCharacteristic, type: .withoutResponse)
+        }
+    }
+}
+
+extension SBrick {
     open func updateQuickDrive(value0: UInt8, direction0: Direction) {
         if let quickDriveCharacteristic = quickDriveCharacteristic {
             let data = Data(bytes: [value0, value0, value0, value0]) // A, C, B, D

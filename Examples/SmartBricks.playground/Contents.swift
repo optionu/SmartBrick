@@ -10,12 +10,9 @@ PlaygroundPage.current.liveView = viewController
 
 var connectedSmartBrick: SBrick?
 
-viewController.sliderChanged = { value in
-    connectedSmartBrick?.updateQuickDrive(value0: UInt8(value), direction0: .clockwise)
-}
-
-viewController.stop = {
-    connectedSmartBrick?.updateQuickDrive(value0: 0, direction0: .clockwise)
+viewController.updateActuator = { value in
+//    connectedSmartBrick?.updateQuickDrive(value0: UInt8(value), direction0: .clockwise)
+    connectedSmartBrick?.updateDrive(channel: .b, value: UInt8(value), direction: .clockwise)
 }
 
 let smartBricksManager = SmartBricksManager()
