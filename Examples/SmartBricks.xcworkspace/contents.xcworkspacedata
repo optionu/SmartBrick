@@ -5,6 +5,9 @@
       location = "group:SmartBricks.playground">
    </FileRef>
    <FileRef
-      location = "container:SmartBricks.xcodeproj">
+      location = "group:SmartBricksUI/SmartBricksUI.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "container:../SmartBricks.xcodeproj">
    </FileRef>
 </Workspace>
