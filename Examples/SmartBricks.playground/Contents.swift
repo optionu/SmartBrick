@@ -10,16 +10,18 @@ PlaygroundPage.current.liveView = viewController
 
 var connectedSmartBrick: SBrick?
 
-viewController.updateActuator = { value in
+viewController.updateActuator = { channelValue, value in
+    value
 //    connectedSmartBrick?.updateQuickDrive(value0: UInt8(value), direction0: .clockwise)
-    connectedSmartBrick?.updateDrive(channel: .b, value: UInt8(value), direction: .clockwise)
+    let channel = SBrick.Channel(rawValue: UInt8(channelValue)) ?? .a
+    connectedSmartBrick?.updateDrive(channel: channel, value: UInt8(value), direction: .clockwise)
 }
 
 let smartBricksManager = SmartBricksManager()
 smartBricksManager.connectToNearestDevice() { smartBrick in
     switch smartBrick {
     case let sbrick as SBrick:
-        print("Connected to SB \(sbrick.peripheral.name ?? "<unknown>") \(sbrick.peripheral.state)")
+        print("Connected to SBrick \"\(sbrick.peripheral.name ?? "<unknown>")\"")
         connectedSmartBrick = sbrick
     default:
         print("No smart brick found")
