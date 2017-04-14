@@ -154,6 +154,7 @@ extension SBrick {
 extension SBrick {
     open func updateQuickDrive(power0: UInt8, direction0: Direction) {
         if let quickDriveCharacteristic = quickDriveCharacteristic {
+            let power0 = (direction0 == .clockwise) ? power0 & 0xfe : power0 | 0x01
             let data = Data(bytes: [power0, power0, power0, power0]) // A, C, B, D
             peripheral.writeValue(data, for: quickDriveCharacteristic, type: .withoutResponse)
         }
