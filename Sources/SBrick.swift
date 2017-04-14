@@ -152,11 +152,18 @@ extension SBrick {
 }
 
 extension SBrick {
-    open func updateQuickDrive(power0: UInt8, direction0: Direction) {
+    // Default order: 0, 1, 2, 3/A, C, B, D
+    open func updateQuickDrive(values: [(power: UInt8, direction: Direction)]) {
         if let quickDriveCharacteristic = quickDriveCharacteristic {
-            let power0 = (direction0 == .clockwise) ? power0 & 0xfe : power0 | 0x01
-            let data = Data(bytes: [power0, power0, power0, power0]) // A, C, B, D
-            peripheral.writeValue(data, for: quickDriveCharacteristic, type: .withoutResponse)
+            // As of Swift 3.1, can't use values.prefix(4).map (http://stackoverflow.com/questions/37931172/ambiguous-use-of-prefix-compiler-error-with-swift-3)
+            // Also, Array(values.prefix(4)).map takes very long to compile thus two lines
+            // must do
+            let values = values.prefix(4)
+            let bytes = values.map { ($1 == .clockwise) ? $0 & 0xfe : $0 | 0x01 }
+            if !bytes.isEmpty {
+                let data = Data(bytes: bytes)
+                peripheral.writeValue(data, for: quickDriveCharacteristic, type: .withoutResponse)
+            }
         }
     }
 }

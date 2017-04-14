@@ -15,7 +15,7 @@ viewController.updateActuator = { channelValue, powerValue in
     let power = UInt8(abs(powerValue))
     let direction: SBrick.Direction = powerValue > 0 ? .clockwise : .counterclockwise
     connectedSmartBrick?.updateDrive(channel: channel, power: power, direction: direction)
-//    connectedSmartBrick?.updateQuickDrive(power0: power, direction0: direction)
+//    connectedSmartBrick?.updateQuickDrive(values: [(power, direction)])
 }
 
 let smartBricksManager = SmartBricksManager()
