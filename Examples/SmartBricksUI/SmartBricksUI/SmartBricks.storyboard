@@ -19,12 +19,12 @@
                                 <rect key="frame" x="0.0" y="104" width="250" height="169"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OKs-wc-wOT">
-                                        <rect key="frame" x="8" y="140" width="144" height="21"/>
+                                        <rect key="frame" x="8" y="140" width="195" height="21"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6zb-Fc-z2C">
-                                                <rect key="frame" x="-6" y="-7" width="132" height="32"/>
+                                                <rect key="frame" x="-6" y="-7" width="142" height="32"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="120" id="Ped-Io-uGs"/>
+                                                    <constraint firstAttribute="width" constant="130" id="Ped-Io-uGs"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="adS-cN-OCg">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -32,14 +32,24 @@
                                                 </buttonCell>
                                             </button>
                                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="VQa-O9-Lmj">
-                                                <rect key="frame" x="128" y="2.5" width="16" height="16"/>
+                                                <rect key="frame" x="138" y="2.5" width="16" height="16"/>
                                             </progressIndicator>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQg-fI-Ljf">
+                                                <rect key="frame" x="160" y="2" width="37" height="17"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="SWX-yK-m7x">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
                                         </subviews>
                                         <visibilityPriorities>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
@@ -231,6 +241,7 @@
                     <connections>
                         <outlet property="connectButton" destination="6zb-Fc-z2C" id="X1e-5c-ENC"/>
                         <outlet property="connectProgressIndicator" destination="VQa-O9-Lmj" id="NW0-I9-AGz"/>
+                        <outlet property="deviceNameLabel" destination="LQg-fI-Ljf" id="w0F-Xq-FyD"/>
                         <outlet property="sliderA" destination="kkk-Cu-fzf" id="57t-Cb-zQt"/>
                         <outlet property="sliderB" destination="qgv-pc-4rc" id="rng-KS-tEk"/>
                         <outlet property="sliderC" destination="vNf-fV-T38" id="HlT-Jg-Ef3"/>

@@ -21,10 +21,11 @@ open class SmartBricksViewController: NSViewController {
     
     @IBOutlet weak var connectButton: NSButton!
     @IBOutlet weak var connectProgressIndicator: NSProgressIndicator!
+    @IBOutlet weak var deviceNameLabel: NSTextField!
     
     public enum ConnectionState {
         case connecting
-        case connected
+        case connected(String)
     }
     open var connectionState: ConnectionState = .connecting { didSet {
             updateConnectionState()
@@ -78,15 +79,17 @@ open class SmartBricksViewController: NSViewController {
     }
     
     func updateConnectionState() {
-        print("updateConnectionState")
-        
         switch connectionState {
         case .connecting:
             connectButton.title = "Connecting…"
             connectProgressIndicator.startAnimation(self)
-        case .connected:
+            connectProgressIndicator.isHidden = false
+            deviceNameLabel.stringValue = ""
+        case .connected(let deviceName):
             connectButton.title = "Reconnect"
             connectProgressIndicator.stopAnimation(self)
+            connectProgressIndicator.isHidden = true
+            deviceNameLabel.stringValue = deviceName
         }
     }
 }
