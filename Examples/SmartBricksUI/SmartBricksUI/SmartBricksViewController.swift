@@ -85,11 +85,25 @@ open class SmartBricksViewController: NSViewController {
             connectProgressIndicator.startAnimation(self)
             connectProgressIndicator.isHidden = false
             deviceNameLabel.stringValue = ""
+            updateControls(enabled: false)
         case .connected(let deviceName):
             connectButton.title = "Reconnect"
             connectProgressIndicator.stopAnimation(self)
             connectProgressIndicator.isHidden = true
             deviceNameLabel.stringValue = deviceName
+            updateControls(enabled: true)
         }
+    }
+    
+    func updateControls(enabled: Bool) {
+        sliderA.isEnabled = enabled
+        sliderB.isEnabled = enabled
+        sliderC.isEnabled = enabled
+        sliderD.isEnabled = enabled
+        
+        stopButtonA.isEnabled = enabled
+        stopButtonB.isEnabled = enabled
+        stopButtonC.isEnabled = enabled
+        stopButtonD.isEnabled = enabled
     }
 }
