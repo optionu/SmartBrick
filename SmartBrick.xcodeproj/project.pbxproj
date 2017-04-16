@@ -20,8 +20,8 @@
 		52D6D9871BEFF229002C0205 /* SmartBrick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* SmartBrick.framework */; };
 		620339CD1EA285230037F665 /* SBrickCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620339CC1EA285230037F665 /* SBrickCommands.swift */; };
 		620339CE1EA285230037F665 /* SBrickCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620339CC1EA285230037F665 /* SBrickCommands.swift */; };
-		620339D11EA375EF0037F665 /* SBrickInputOutputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620339D01EA375EF0037F665 /* SBrickInputOutputs.swift */; };
-		620339D21EA375EF0037F665 /* SBrickInputOutputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620339D01EA375EF0037F665 /* SBrickInputOutputs.swift */; };
+		620339D11EA375EF0037F665 /* SBrickIOChannels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620339D01EA375EF0037F665 /* SBrickIOChannels.swift */; };
+		620339D21EA375EF0037F665 /* SBrickIOChannels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620339D01EA375EF0037F665 /* SBrickIOChannels.swift */; };
 		620339D41EA3782A0037F665 /* SBrickCommandsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620339D31EA3782A0037F665 /* SBrickCommandsTests.swift */; };
 		620339D51EA3782A0037F665 /* SBrickCommandsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620339D31EA3782A0037F665 /* SBrickCommandsTests.swift */; };
 		6250A6A11E9ACA9F007934FB /* SmartBricksManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250A6A01E9ACA9F007934FB /* SmartBricksManagerTests.swift */; };
@@ -66,7 +66,7 @@
 		52D6D9861BEFF229002C0205 /* SmartBrick-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SmartBrick-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6DA0F1BF000BD002C0205 /* SmartBrick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SmartBrick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		620339CC1EA285230037F665 /* SBrickCommands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickCommands.swift; sourceTree = "<group>"; };
-		620339D01EA375EF0037F665 /* SBrickInputOutputs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickInputOutputs.swift; sourceTree = "<group>"; };
+		620339D01EA375EF0037F665 /* SBrickIOChannels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickIOChannels.swift; sourceTree = "<group>"; };
 		620339D31EA3782A0037F665 /* SBrickCommandsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickCommandsTests.swift; sourceTree = "<group>"; };
 		6250A6A01E9ACA9F007934FB /* SmartBricksManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBricksManagerTests.swift; sourceTree = "<group>"; };
 		6250A6A31E9C25A3007934FB /* SBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrick.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 				034CFE771E97BF14004F43DF /* NearestDeviceHelper.swift */,
 				6250A6A31E9C25A3007934FB /* SBrick.swift */,
 				6250A6A81E9C2D2D007934FB /* SBrickPlus.swift */,
-				620339D01EA375EF0037F665 /* SBrickInputOutputs.swift */,
+				620339D01EA375EF0037F665 /* SBrickIOChannels.swift */,
 				620339CC1EA285230037F665 /* SBrickCommands.swift */,
 			);
 			path = Sources;
@@ -373,7 +373,7 @@
 			files = (
 				039CD9961E92A4A2006D4992 /* SmartBrickManager.swift in Sources */,
 				6250A6A71E9C263C007934FB /* SBrick.swift in Sources */,
-				620339D11EA375EF0037F665 /* SBrickInputOutputs.swift in Sources */,
+				620339D11EA375EF0037F665 /* SBrickIOChannels.swift in Sources */,
 				0392C9E11E93C2DD006BEE71 /* SmartBrick.swift in Sources */,
 				62CCA8CD1E95848E00F00B80 /* BinaryReader.swift in Sources */,
 				034CFE751E97BE4C004F43DF /* SmartBrickController.swift in Sources */,
@@ -401,7 +401,7 @@
 			files = (
 				039CD99B1E92A4BC006D4992 /* SmartBrickManager.swift in Sources */,
 				6250A6A61E9C263B007934FB /* SBrick.swift in Sources */,
-				620339D21EA375EF0037F665 /* SBrickInputOutputs.swift in Sources */,
+				620339D21EA375EF0037F665 /* SBrickIOChannels.swift in Sources */,
 				620339CE1EA285230037F665 /* SBrickCommands.swift in Sources */,
 				0392C9E21E93C413006BEE71 /* SmartBrick.swift in Sources */,
 				62CCA8CE1E95848E00F00B80 /* BinaryReader.swift in Sources */,
