@@ -24,7 +24,7 @@ struct SBrickRemoteControlCommand: SBrickCommand {
         return Data(bytes: [commandIdentifier.rawValue]) + data
     }
     
-    static func driveCommand(channel: SBrickChannel, direction: MotorDirection, power: UInt8) -> SBrickRemoteControlCommand {
+    static func driveCommand(channel: SBrickChannel, direction: SBrickMotorDirection, power: UInt8) -> SBrickRemoteControlCommand {
         let data = Data(bytes: [channel.rawValue, direction.rawValue, power])
         return SBrickRemoteControlCommand(commandIdentifier: .drive, data: data)
     }
@@ -40,7 +40,7 @@ struct SBrickRemoteControlCommand: SBrickCommand {
 }
 
 struct SBrickQuickDriveCommand: SBrickCommand {
-    let channelValues: [(MotorDirection, UInt8)]
+    let channelValues: [(SBrickMotorDirection, UInt8)]
     var value: Data {
         // As of Swift 3.1, can't use values.prefix(4).map (http://stackoverflow.com/questions/37931172/ambiguous-use-of-prefix-compiler-error-with-swift-3)
         // Also, Array(values.prefix(4)).map takes very long to compile thus two lines must do

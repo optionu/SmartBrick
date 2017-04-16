@@ -26,7 +26,7 @@ viewController.updateActuator = { channelValue, powerValue in
     let motor = connectedSmartBrick?.motor(for: channel)
 
     let power = UInt8(abs(powerValue))
-    let direction: MotorDirection = powerValue > 0 ? .clockwise : .counterclockwise
+    let direction: SBrickMotorDirection = powerValue > 0 ? .clockwise : .counterclockwise
     motor?.drive(direction: direction, power: power)
     
 //    let channel = SBrickChannel(rawValue: UInt8(channelValue)) ?? .a
