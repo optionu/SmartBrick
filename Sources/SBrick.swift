@@ -137,9 +137,8 @@ extension SBrick {
 
 extension SBrick {
     func write(_ command: SBrickCommand, characteristic: CBCharacteristic) {
-        let value = command.value
-        if !value.isEmpty {
-            peripheral.writeValue(value, for: characteristic, type: .withResponse)
+        if !command.value.isEmpty {
+            peripheral.writeValue(command.value, for: characteristic, type: .withResponse)
         }
     }
     
