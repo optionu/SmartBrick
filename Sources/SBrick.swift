@@ -114,56 +114,44 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
             completionBlock?()
         }
     }
-    
-    //    open func retrieveSensorValue(for channel: Channel)
-    //    open func startReceivingSensorValues(for channel: Channel)
-    //    open func updateActuator(for channel: Channel, with value: UInt8)
+}
+
+// Letters are numbered according to SBrick app; raw values match channels
+// --o--
+// aa bb
+// cc dd
+// --|--
+public enum SBrickChannel: UInt8 {
+    case a = 0x00, b = 0x02, c = 0x01, d = 0x03
 }
 
 extension SBrick {
-    // Letters are numbered according to SBrick app; numbers match channels
-    // --o--
-    // aa bb
-    // cc dd
-    // --|--
-    public enum Channel: UInt8 {
-        case a = 0x00, b = 0x02, c = 0x01, d = 0x03
+    open func motor(for channel: SBrickChannel) -> SBrickMotor {
+        return SBrickMotor(device: self, channel: channel)
     }
     
-    // Viewed from the drive end
-    public enum Direction: UInt8 {
-        case clockwise = 0x00, counterclockwise = 0x01
-    }
-
-    // Min power for motor is 110
-    open func updateDrive(channel: Channel, power: UInt8, direction: Direction) {
-        if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
-            let data = Data(bytes: [0x01, channel.rawValue, direction.rawValue, power])
-            peripheral.writeValue(data, for: remoteControlCommandsCharacteristic, type: .withoutResponse)
-        }
-    }
-    
-    open func updateBreak(channel: Channel) {
-        if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
-            let data = Data(bytes: [0x00, channel.rawValue])
-            peripheral.writeValue(data, for: remoteControlCommandsCharacteristic, type: .withoutResponse)
-        }
+    open func quickDrive(for channel: SBrickChannel) -> SBrickQuickDrive {
+        return SBrickQuickDrive(device: self, channel: channel)
     }
 }
 
 extension SBrick {
-    // Default order: 0, 1, 2, 3/A, C, B, D
-    open func updateQuickDrive(values: [(power: UInt8, direction: Direction)]) {
+    func write(_ command: SBrickCommand, characteristic: CBCharacteristic) {
+        let value = command.value
+        if !value.isEmpty {
+            peripheral.writeValue(value, for: characteristic, type: .withResponse)
+        }
+    }
+    
+    func write(_ command: SBrickRemoteControlCommand) {
+        if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
+            write(command, characteristic: remoteControlCommandsCharacteristic)
+        }
+    }
+    
+    func write(_ command: SBrickQuickDriveCommand) {
         if let quickDriveCharacteristic = quickDriveCharacteristic {
-            // As of Swift 3.1, can't use values.prefix(4).map (http://stackoverflow.com/questions/37931172/ambiguous-use-of-prefix-compiler-error-with-swift-3)
-            // Also, Array(values.prefix(4)).map takes very long to compile thus two lines
-            // must do
-            let values = values.prefix(4)
-            let bytes = values.map { ($1 == .clockwise) ? $0 & 0xfe : $0 | 0x01 }
-            if !bytes.isEmpty {
-                let data = Data(bytes: bytes)
-                peripheral.writeValue(data, for: quickDriveCharacteristic, type: .withoutResponse)
-            }
+            write(command, characteristic: quickDriveCharacteristic)
         }
     }
 }

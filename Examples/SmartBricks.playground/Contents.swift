@@ -9,15 +9,6 @@ let viewController = storyboard.instantiateInitialController() as! SmartBricksVi
 PlaygroundPage.current.liveView = viewController
 
 var connectedSmartBrick: SBrick?
-
-viewController.updateActuator = { channelValue, powerValue in
-    let channel = SBrick.Channel(rawValue: UInt8(channelValue)) ?? .a
-    let power = UInt8(abs(powerValue))
-    let direction: SBrick.Direction = powerValue > 0 ? .clockwise : .counterclockwise
-    connectedSmartBrick?.updateDrive(channel: channel, power: power, direction: direction)
-//    connectedSmartBrick?.updateQuickDrive(values: [(power, direction)])
-}
-
 let smartBricksManager = SmartBricksManager()
 smartBricksManager.connectToNearestDevice() { smartBrick in
     switch smartBrick {
@@ -28,4 +19,13 @@ smartBricksManager.connectToNearestDevice() { smartBrick in
     default:
         print("No smart brick found")
     }
+}
+
+viewController.updateActuator = { channelValue, powerValue in
+    let channel = SBrickChannel(rawValue: UInt8(channelValue)) ?? .a
+    let motor = connectedSmartBrick?.motor(for: channel)
+
+    let power = UInt8(abs(powerValue))
+    let direction: MotorDirection = powerValue > 0 ? .clockwise : .counterclockwise
+    motor?.drive(direction: direction, power: power)
 }

@@ -16,7 +16,7 @@ open class SBrickPlus: SBrick {
 }
 
 extension SBrickPlus {
-    open func retrieveSensorValue(channel: Channel) {
+    open func retrieveSensorValue(channel: SBrickChannel) {
         if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
             let data = Data(bytes: [0x0F, channel.rawValue])
             peripheral.writeValue(data, for: remoteControlCommandsCharacteristic, type: .withoutResponse)
