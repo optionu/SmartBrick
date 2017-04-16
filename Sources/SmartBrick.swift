@@ -15,9 +15,7 @@ public protocol SmartBrick: class {
     func prepareConnection(completionHandler: @escaping (() -> Void))
 }
 
-// generic input/output
 // voltage, temperature
-// quick drive
 
 public protocol InputOutput {
 }

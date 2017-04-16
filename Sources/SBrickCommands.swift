@@ -23,7 +23,7 @@ struct SBrickRemoteControlCommand: SBrickCommand {
         return Data(bytes: [commandIdentifier.rawValue]) + data
     }
     
-    static func driveCommand(channel: SBrickChannel, power: UInt8, direction: MotorDirection) -> SBrickRemoteControlCommand {
+    static func driveCommand(channel: SBrickChannel, direction: MotorDirection, power: UInt8) -> SBrickRemoteControlCommand {
         let data = Data(bytes: [channel.rawValue, direction.rawValue, power])
         return SBrickRemoteControlCommand(commandIdentifier: .drive, data: data)
     }
@@ -35,12 +35,12 @@ struct SBrickRemoteControlCommand: SBrickCommand {
 
 // Default order: 0, 1, 2, 3/A, C, B, D
 struct SBrickQuickDriveCommand: SBrickCommand {
-    let channelValues: [(UInt8, MotorDirection)]
+    let channelValues: [(MotorDirection, UInt8)]
     var value: Data {
         // As of Swift 3.1, can't use values.prefix(4).map (http://stackoverflow.com/questions/37931172/ambiguous-use-of-prefix-compiler-error-with-swift-3)
         // Also, Array(values.prefix(4)).map takes very long to compile thus two lines must do
         let values = channelValues.prefix(4)
-        let bytes = values.map { ($1 == .clockwise) ? $0 & 0xfe : $0 | 0x01 }
+        let bytes = values.map { ($0 == .clockwise) ? $1 & 0xfe : $1 | 0x01 }
         return Data(bytes: bytes)
     }
 }

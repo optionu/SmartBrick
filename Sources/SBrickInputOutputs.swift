@@ -18,7 +18,7 @@ open class SBrickMotor: Motor {
     }
     
     open func drive(direction: MotorDirection, power: UInt8) {
-        let command = SBrickRemoteControlCommand.driveCommand(channel: channel, power: power, direction: direction)
+        let command = SBrickRemoteControlCommand.driveCommand(channel: channel, direction: direction, power: power)
         device.write(command)
     }
     
@@ -37,7 +37,7 @@ open class SBrickQuickDrive: InputOutput {
         self.channel = channel
     }
     
-    func updateQuickDrive(channelValues: [(power: UInt8, direction: MotorDirection)]) {
+    func updateQuickDrive(channelValues: [(direction: MotorDirection, power: UInt8)]) {
         let command = SBrickQuickDriveCommand(channelValues: channelValues)
         device.write(command)
     }
