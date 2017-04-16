@@ -1,15 +1,15 @@
 import Cocoa
-import SmartBricks
-import SmartBricksUI
+import SmartBrick
+import SmartBrickUI
 import PlaygroundSupport
 
-let bundle = Bundle(for: SmartBricksViewController.self)
-let storyboard = NSStoryboard(name: "SmartBricks", bundle: bundle)
-let viewController = storyboard.instantiateInitialController() as! SmartBricksViewController
+let bundle = Bundle(for: SmartBrickViewController.self)
+let storyboard = NSStoryboard(name: "SmartBrick", bundle: bundle)
+let viewController = storyboard.instantiateInitialController() as! SmartBrickViewController
 PlaygroundPage.current.liveView = viewController
 
 var connectedSmartBrick: SBrick?
-let smartBricksManager = SmartBricksManager()
+let smartBricksManager = SmartBrickManager()
 smartBricksManager.connectToNearestDevice() { smartBrick in
     switch smartBrick {
     case let sbrick as SBrick:

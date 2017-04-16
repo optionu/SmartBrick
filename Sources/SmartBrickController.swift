@@ -9,16 +9,16 @@
 import Foundation
 import CoreBluetooth
 
-protocol SmartBricksControllerDelegate: class {
-    func smartBricksController(_ smartBricksController: SmartBricksController, didDiscover smartBrick: SmartBrick)
+protocol SmartBrickControllerDelegate: class {
+    func smartBricksController(_ smartBrickController: SmartBrickController, didDiscover smartBrick: SmartBrick)
 }
 
-class SmartBricksController: NSObject, CBCentralManagerDelegate {
+class SmartBrickController: NSObject, CBCentralManagerDelegate {
     fileprivate let central: CBCentralManager
     fileprivate var shouldBeScanning = false
     fileprivate var connectingDevices = [UUID: () -> Void]()
 
-    weak var delegate: SmartBricksControllerDelegate?
+    weak var delegate: SmartBrickControllerDelegate?
     
     override init() {
         central = CBCentralManager(delegate: nil, queue: nil)
@@ -44,7 +44,7 @@ class SmartBricksController: NSObject, CBCentralManagerDelegate {
     }
 }
 
-extension SmartBricksController {
+extension SmartBrickController {
     func scanForDevices() {
         // Indicate that we should be scanning so delegate callbacks will start a scan if we can't right now.
         shouldBeScanning = true
@@ -73,7 +73,7 @@ extension SmartBricksController {
     }
 }
 
-extension SmartBricksController {
+extension SmartBrickController {
     func connect(peripheral: CBPeripheral, completionHandler: @escaping (() -> Void)) {
         print("connect")
         connectingDevices[peripheral.identifier] = completionHandler

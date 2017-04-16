@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SmartBricks
+@testable import SmartBrick
 
 class SBrickTests: XCTestCase {
     func testIsValidDeviceSBrick() {

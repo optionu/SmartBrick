@@ -9,18 +9,18 @@
 import Foundation
 import CoreBluetooth
 
-public protocol SmartBricksManagerDelegate: class {
-    func smartBricksManager(_ smartBricksManager: SmartBricksManager, didDiscover smartBrick: SmartBrick)
+public protocol SmartBrickManagerDelegate: class {
+    func smartBrickManager(_ smartBrickManager: SmartBrickManager, didDiscover smartBrick: SmartBrick)
 }
 
-public final class SmartBricksManager: SmartBricksControllerDelegate {
-    public weak var delegate: SmartBricksManagerDelegate?
+public final class SmartBrickManager: SmartBrickControllerDelegate {
+    public weak var delegate: SmartBrickManagerDelegate?
 
-    private let controller: SmartBricksController
-    private var deviceHelper: SmartBricksControllerDelegate?
+    private let controller: SmartBrickController
+    private var deviceHelper: SmartBrickControllerDelegate?
 
     public init() {
-        controller = SmartBricksController()
+        controller = SmartBrickController()
         controller.delegate = self
     }
     
@@ -43,7 +43,7 @@ public final class SmartBricksManager: SmartBricksControllerDelegate {
         controller.stopScanning()
     }
 
-    func smartBricksController(_ smartBricksController: SmartBricksController, didDiscover smartBrick: SmartBrick) {
-        delegate?.smartBricksManager(self, didDiscover: smartBrick)
+    func smartBricksController(_ smartBrickController: SmartBrickController, didDiscover smartBrick: SmartBrick) {
+        delegate?.smartBrickManager(self, didDiscover: smartBrick)
     }
 }

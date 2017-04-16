@@ -7,10 +7,10 @@
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
-        <!--Smart Bricks View Controller-->
+        <!--Smart Brick View Controller-->
         <scene sceneID="cpZ-aQ-n44">
             <objects>
-                <viewController id="gn1-E7-c2q" customClass="SmartBricksViewController" customModule="SmartBricksUI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gn1-E7-c2q" customClass="SmartBrickViewController" customModule="SmartBrickUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="vYM-Bl-xaz">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="273"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -55,7 +55,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHI-kg-Vzm">
-                                        <rect key="frame" x="8" y="107" width="174" height="25"/>
+                                        <rect key="frame" x="8" y="107" width="234" height="25"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mp7-HD-d7Y">
                                                 <rect key="frame" x="-2" y="3" width="13" height="17"/>
@@ -66,14 +66,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kkk-Cu-fzf">
-                                                <rect key="frame" x="15" y="1" width="96" height="24"/>
+                                                <rect key="frame" x="15" y="1" width="156" height="24"/>
                                                 <sliderCell key="cell" state="on" alignment="left" minValue="-255" maxValue="255" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="8Vs-x7-C7b"/>
                                                 <connections>
                                                     <action selector="sliderChanged:" target="gn1-E7-c2q" id="gql-KK-V8x"/>
                                                 </connections>
                                             </slider>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aue-Qf-7N5">
-                                                <rect key="frame" x="111" y="-7" width="69" height="32"/>
+                                                <rect key="frame" x="171" y="-7" width="69" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M3l-i8-DRq">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -95,7 +95,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhG-uN-Wrh">
-                                        <rect key="frame" x="8" y="74" width="174" height="25"/>
+                                        <rect key="frame" x="8" y="74" width="234" height="25"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9P-6C-Rie">
                                                 <rect key="frame" x="-2" y="3" width="13" height="17"/>
@@ -106,14 +106,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qgv-pc-4rc">
-                                                <rect key="frame" x="15" y="1" width="96" height="24"/>
+                                                <rect key="frame" x="15" y="1" width="156" height="24"/>
                                                 <sliderCell key="cell" state="on" alignment="left" minValue="-255" maxValue="255" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="Icc-h8-ccR"/>
                                                 <connections>
                                                     <action selector="sliderChanged:" target="gn1-E7-c2q" id="rse-Ta-t3P"/>
                                                 </connections>
                                             </slider>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aNr-cI-UKa">
-                                                <rect key="frame" x="111" y="-7" width="69" height="32"/>
+                                                <rect key="frame" x="171" y="-7" width="69" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6qP-My-9VL">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -135,7 +135,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u0E-NN-2xL">
-                                        <rect key="frame" x="8" y="41" width="175" height="25"/>
+                                        <rect key="frame" x="8" y="41" width="234" height="25"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cko-uG-Vxk">
                                                 <rect key="frame" x="-2" y="3" width="14" height="17"/>
@@ -146,14 +146,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vNf-fV-T38">
-                                                <rect key="frame" x="16" y="1" width="96" height="24"/>
+                                                <rect key="frame" x="16" y="1" width="155" height="24"/>
                                                 <sliderCell key="cell" state="on" alignment="left" minValue="-255" maxValue="255" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="rc1-RQ-VBR"/>
                                                 <connections>
                                                     <action selector="sliderChanged:" target="gn1-E7-c2q" id="2fS-AD-lzB"/>
                                                 </connections>
                                             </slider>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2vh-PO-9Rk">
-                                                <rect key="frame" x="112" y="-7" width="69" height="32"/>
+                                                <rect key="frame" x="171" y="-7" width="69" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3AT-oF-AXl">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -175,7 +175,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PQC-zU-YVh">
-                                        <rect key="frame" x="8" y="8" width="175" height="25"/>
+                                        <rect key="frame" x="8" y="8" width="234" height="25"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-cZ-0dg">
                                                 <rect key="frame" x="-2" y="3" width="14" height="17"/>
@@ -186,14 +186,14 @@
                                                 </textFieldCell>
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="urv-oU-z5W">
-                                                <rect key="frame" x="16" y="1" width="96" height="24"/>
+                                                <rect key="frame" x="16" y="1" width="155" height="24"/>
                                                 <sliderCell key="cell" state="on" alignment="left" minValue="-255" maxValue="255" tickMarkPosition="above" numberOfTickMarks="1" sliderType="linear" id="Sg1-0q-yhg"/>
                                                 <connections>
                                                     <action selector="sliderChanged:" target="gn1-E7-c2q" id="x8f-gD-9xm"/>
                                                 </connections>
                                             </slider>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="COb-JA-hc5">
-                                                <rect key="frame" x="112" y="-7" width="69" height="32"/>
+                                                <rect key="frame" x="171" y="-7" width="69" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zMm-gC-vmC">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>

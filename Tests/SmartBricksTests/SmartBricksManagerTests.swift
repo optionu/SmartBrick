@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import SmartBricks
+import SmartBrick
 
 class SmartBricksManagerTests: XCTestCase {
 //    func testConnectToNearestDevice() {

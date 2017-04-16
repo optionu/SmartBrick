@@ -8,7 +8,7 @@
 
 import Cocoa
 
-open class SmartBricksViewController: NSViewController {
+open class SmartBrickViewController: NSViewController {
     @IBOutlet weak var sliderA: NSSlider!
     @IBOutlet weak var sliderB: NSSlider!
     @IBOutlet weak var sliderC: NSSlider!

@@ -8,16 +8,16 @@
 
 import Foundation
 
-class NearestDeviceHelper: SmartBricksControllerDelegate {
+class NearestDeviceHelper: SmartBrickControllerDelegate {
     let completionBlock: ((SmartBrick?) -> Void)
 
     init(completionBlock: @escaping ((SmartBrick?) -> Void)) {
         self.completionBlock = completionBlock
     }
 
-    func smartBricksController(_ smartBricksController: SmartBricksController, didDiscover smartBrick: SmartBrick) {
-        smartBricksController.stopScanning()
-        smartBricksController.connect(peripheral: smartBrick.peripheral) {
+    func smartBricksController(_ smartBrickController: SmartBrickController, didDiscover smartBrick: SmartBrick) {
+        smartBrickController.stopScanning()
+        smartBrickController.connect(peripheral: smartBrick.peripheral) {
             smartBrick.prepareConnection() {
                 self.completionBlock(smartBrick)
             }
