@@ -16,6 +16,7 @@ struct SBrickRemoteControlCommand: SBrickCommand {
     enum CommandIdentifier: UInt8 {
         case `break` = 0x00
         case drive = 0x01
+        case quickDriveSetup = 0x0b
     }
     let commandIdentifier: CommandIdentifier
     let data: Data
@@ -31,9 +32,13 @@ struct SBrickRemoteControlCommand: SBrickCommand {
     static func breakCommand(channel: SBrickChannel) -> SBrickRemoteControlCommand {
         return SBrickRemoteControlCommand(commandIdentifier: .break, data: Data())
     }
+    
+    static func quickDriveSetupCommand(channel0: SBrickChannel, channel1: SBrickChannel, channel2: SBrickChannel, channel3: SBrickChannel) -> SBrickRemoteControlCommand {
+        let data = Data(bytes: [channel0.rawValue, channel1.rawValue, channel2.rawValue, channel3.rawValue])
+        return SBrickRemoteControlCommand(commandIdentifier: .quickDriveSetup, data: data)
+    }
 }
 
-// Default order: 0, 1, 2, 3/A, C, B, D
 struct SBrickQuickDriveCommand: SBrickCommand {
     let channelValues: [(MotorDirection, UInt8)]
     var value: Data {

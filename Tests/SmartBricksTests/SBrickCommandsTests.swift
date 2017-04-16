@@ -27,6 +27,11 @@ class SBrickCommandsTests: XCTestCase {
         XCTAssertEqual(command.value, Data(bytes: [0x00]))
     }
     
+    func testRemoteControlCommandQuickDriveSetup() {
+        let command: SBrickCommand = SBrickRemoteControlCommand.quickDriveSetupCommand(channel0: .a, channel1: .c, channel2: .b, channel3: .d)
+        XCTAssertEqual(command.value, Data(bytes: [0x0b, 0x00, 0x01, 0x02, 0x03]))
+    }
+    
     func testQuickDriveCommand() {
         let channelValues: [(MotorDirection, UInt8)] = [(.clockwise, 100), (.counterclockwise, 123)]
         let command = SBrickQuickDriveCommand(channelValues: channelValues)
