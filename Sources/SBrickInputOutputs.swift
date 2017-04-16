@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class SBrickMotor: Motor {
+open class SBrickInputOutput {
     open let device: SBrick
     open let channel: SBrickChannel
     
@@ -16,7 +16,9 @@ open class SBrickMotor: Motor {
         self.device = device
         self.channel = channel
     }
-    
+}
+
+open class SBrickMotor: SBrickInputOutput, Motor {
     open func drive(direction: MotorDirection, power: UInt8) {
         let command = SBrickRemoteControlCommand.driveCommand(channel: channel, direction: direction, power: power)
         device.write(command)
@@ -28,15 +30,7 @@ open class SBrickMotor: Motor {
     }
 }
 
-open class SBrickQuickDrive: InputOutput {
-    open let device: SBrick
-    open let channel: SBrickChannel
-    
-    init(device: SBrick, channel: SBrickChannel) {
-        self.device = device
-        self.channel = channel
-    }
-    
+open class SBrickQuickDrive: SBrickInputOutput, InputOutput {
     func updateQuickDrive(channelValues: [(direction: MotorDirection, power: UInt8)]) {
         let command = SBrickQuickDriveCommand(channelValues: channelValues)
         device.write(command)
