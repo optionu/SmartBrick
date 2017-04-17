@@ -17,6 +17,9 @@ struct SBrickRemoteControlCommand: SBrickCommand {
         case `break` = 0x00
         case drive = 0x01
         case quickDriveSetup = 0x0b
+        case queryADC = 0x0f
+        case setUpPeriodicVoltageMeasurement = 0x2c
+        case setUpPeriodicVoltageNotifications = 0x2e
     }
     let commandIdentifier: CommandIdentifier
     let data: Data

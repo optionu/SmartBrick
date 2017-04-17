@@ -80,7 +80,7 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        print("didDiscoverServices \(String(describing: error))")
+        print("didDiscoverServices error: \(String(describing: error))")
         
         if error == nil, let services = peripheral.services {
             for service in services {
@@ -97,7 +97,7 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        print("didDiscoverCharacteristics \(String(describing: error))")
+        print("didDiscoverCharacteristics error: \(String(describing: error))")
         
         for characteristic in service.characteristics ?? [] {
             switch characteristic.uuid {
@@ -113,6 +113,34 @@ open class SBrick: NSObject, SmartBrick, CBPeripheralDelegate {
         if remoteControlCommandsCharacteristic != nil && quickDriveCharacteristic != nil {
             completionBlock?()
         }
+    }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("didWriteValue value: \(String(describing: characteristic.value)) error: \(String(describing: error))")
+    }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("didUpdateValueFor value: \(String(describing: characteristic.value)) error: \(String(describing: error))")
+        
+        if let value = characteristic.value {
+            let binaryReader = BinaryReader(withData: value, bigEndian: false)
+            let adc0 = binaryReader.readUInt16()
+            let adc1 = binaryReader.readUInt16()
+            let adc2 = binaryReader.readUInt16()
+            let adc3 = binaryReader.readUInt16()
+            let voltage = Double(adc2) * 0.83875 / 2047.0;
+            let voltagec = Double(adc2 & 0xfff0) * 0.83875 / 2047.0;
+            let temperature = Double(adc3) / 118.85795 - 160
+            let temperaturec = Double(adc3 & 0xfff0) / 118.85795 - 160
+            print("value: \(value.map { String(format: "%02hhx", $0) }.joined())")
+            print("adc0: \(adc0), adc1: \(adc1 >> 4), adc2: \(adc2), adc3: \(adc3)")
+            print("voltage: \(voltage), temperature: \(temperature)")
+            print("voltagec: \(voltagec), temperaturec: \(temperaturec)")
+        }
+    }
+    
+    public func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        print("didUpdateNotificationState isNotifying: \(characteristic.isNotifying) value: \(String(describing: characteristic.value)) error: \(String(describing: error))")
     }
 }
 
@@ -133,8 +161,13 @@ extension SBrick {
     open func quickDrive(for channel: SBrickChannel) -> SBrickQuickDrive {
         return SBrickQuickDrive(device: self, channel: channel)
     }
+    
+    open func motionSensor(for channel: SBrickChannel) -> SBrickMotionSensor {
+        return SBrickMotionSensor(device: self, channel: channel)
+    }
 }
 
+var b = true
 extension SBrick {
     func write(_ command: SBrickCommand, characteristic: CBCharacteristic) {
         if !command.value.isEmpty {
@@ -151,6 +184,22 @@ extension SBrick {
     func write(_ command: SBrickQuickDriveCommand) {
         if let quickDriveCharacteristic = quickDriveCharacteristic {
             write(command, characteristic: quickDriveCharacteristic)
+        }
+    }
+    
+    func test() {
+        if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
+            if b {
+                let command1 = SBrickRemoteControlCommand(commandIdentifier: .setUpPeriodicVoltageMeasurement, data: Data(bytes: [0x00, 0x01, 0x08, 0x09]))
+                write(command1, characteristic: remoteControlCommandsCharacteristic)
+                
+                b = false
+            }
+            let command2 = SBrickRemoteControlCommand(commandIdentifier: .queryADC, data: Data(bytes: [0x00, 0x01, 0x08, 0x09]))
+            write(command2, characteristic: remoteControlCommandsCharacteristic)
+
+            peripheral.readValue(for: remoteControlCommandsCharacteristic)
+            
         }
     }
 }

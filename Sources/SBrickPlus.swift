@@ -24,7 +24,7 @@ extension SBrickPlus {
         }
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("didUpdateValueFor \(String(describing: characteristic.value))")
-    }
+//    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+//        print("didUpdateValueFor \(String(describing: characteristic.value))")
+//    }
 }

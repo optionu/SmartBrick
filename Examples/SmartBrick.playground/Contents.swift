@@ -36,4 +36,8 @@ viewController.updateActuator = { channelValue, powerValue in
 //    let direction: MotorDirection = powerValue > 0 ? .clockwise : .counterclockwise
 //    quickDrive?.changeChannelMapping(channel0: .a, channel1: .a, channel2: .a, channel3: .a)
 //    quickDrive?.drive(channelValues: [(direction, power)])
+
+//    let channel = SBrickChannel(rawValue: UInt8(channelValue)) ?? .a
+//    let motionSensor = connectedSmartBrick?.motionSensor(for: channel)
+//    motionSensor?.test()
 }

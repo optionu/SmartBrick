@@ -47,3 +47,9 @@ open class SBrickQuickDrive: SBrickInputOutput, IOChannel {
         device.write(command)
     }
 }
+
+open class SBrickMotionSensor: SBrickInputOutput, IOChannel {
+    open func test() {
+        device.test()
+    }
+}
