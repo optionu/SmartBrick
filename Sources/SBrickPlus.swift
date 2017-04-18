@@ -15,16 +15,8 @@ open class SBrickPlus: SBrick {
     }
 }
 
-extension SBrickPlus {
-    open func retrieveSensorValue(channel: SBrickChannel) {
-        if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
-            let data = Data(bytes: [0x0F, channel.rawValue])
-            peripheral.writeValue(data, for: remoteControlCommandsCharacteristic, type: .withoutResponse)
-            peripheral.readValue(for: remoteControlCommandsCharacteristic)
-        }
+extension SBrick {
+    open func motionSensor(for channel: SBrickChannel) -> SBrickMotionSensor {
+        return SBrickMotionSensor(device: self, channel: channel)
     }
-    
-//    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-//        print("didUpdateValueFor \(String(describing: characteristic.value))")
-//    }
 }

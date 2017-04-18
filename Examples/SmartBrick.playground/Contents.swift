@@ -39,5 +39,5 @@ viewController.updateActuator = { channelValue, powerValue in
 
 //    let channel = SBrickChannel(rawValue: UInt8(channelValue)) ?? .a
 //    let motionSensor = connectedSmartBrick?.motionSensor(for: channel)
-//    motionSensor?.test()
+//    motionSensor?.retrieveDistance()
 }

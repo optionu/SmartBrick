@@ -49,7 +49,7 @@ open class SBrickQuickDrive: SBrickInputOutput, IOChannel {
 }
 
 open class SBrickMotionSensor: SBrickInputOutput, IOChannel {
-    open func test() {
-        device.test()
+    open func retrieveDistance() {
+        device.read(channel)
     }
 }

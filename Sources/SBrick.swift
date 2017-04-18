@@ -161,13 +161,8 @@ extension SBrick {
     open func quickDrive(for channel: SBrickChannel) -> SBrickQuickDrive {
         return SBrickQuickDrive(device: self, channel: channel)
     }
-    
-    open func motionSensor(for channel: SBrickChannel) -> SBrickMotionSensor {
-        return SBrickMotionSensor(device: self, channel: channel)
-    }
 }
 
-var b = true
 extension SBrick {
     func write(_ command: SBrickCommand, characteristic: CBCharacteristic) {
         if !command.value.isEmpty {
@@ -186,8 +181,11 @@ extension SBrick {
             write(command, characteristic: quickDriveCharacteristic)
         }
     }
-    
-    func test() {
+}
+
+var b = true
+extension SBrick {
+    func read(_ channel: SBrickChannel) {
         if let remoteControlCommandsCharacteristic = remoteControlCommandsCharacteristic {
             if b {
                 let command1 = SBrickRemoteControlCommand(commandIdentifier: .setUpPeriodicVoltageMeasurement, data: Data(bytes: [0x00, 0x01, 0x08, 0x09]))
