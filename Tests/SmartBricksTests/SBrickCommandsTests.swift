@@ -33,7 +33,7 @@ class SBrickCommandsTests: XCTestCase {
     }
     
     func testQuickDriveCommand() {
-        let channelValues: [(MotorDirection, UInt8)] = [(.clockwise, 100), (.counterclockwise, 123)]
+        let channelValues: [(SBrickMotorDirection, UInt8)] = [(.clockwise, 100), (.counterclockwise, 123)]
         let command = SBrickQuickDriveCommand(channelValues: channelValues)
         XCTAssertEqual(command.channelValues[0].0, channelValues[0].0)
         XCTAssertEqual(command.channelValues[0].1, channelValues[0].1)
@@ -50,7 +50,7 @@ class SBrickCommandsTests: XCTestCase {
         XCTAssertEqual(SBrickQuickDriveCommand(channelValues: [(.counterclockwise, 16)]).value, Data(bytes: [0x11]))
         XCTAssertEqual(SBrickQuickDriveCommand(channelValues: [(.counterclockwise, 255)]).value, Data(bytes: [0xff]))
         
-        let channelValue: (MotorDirection, UInt8) = (.clockwise, 100)
+        let channelValue: (SBrickMotorDirection, UInt8) = (.clockwise, 100)
         XCTAssertEqual(SBrickQuickDriveCommand(channelValues: Array(repeating: channelValue, count: 0)).value.count, 0)
         XCTAssertEqual(SBrickQuickDriveCommand(channelValues: Array(repeating: channelValue, count: 1)).value.count, 1)
         XCTAssertEqual(SBrickQuickDriveCommand(channelValues: Array(repeating: channelValue, count: 4)).value.count, 4)
