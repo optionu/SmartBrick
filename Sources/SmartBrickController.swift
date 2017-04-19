@@ -10,7 +10,7 @@ import Foundation
 import CoreBluetooth
 
 protocol SmartBrickControllerDelegate: class {
-    func smartBricksController(_ smartBrickController: SmartBrickController, didDiscover smartBrick: SmartBrick)
+    func smartBrickController(_ smartBrickController: SmartBrickController, didDiscover smartBrick: SmartBrick)
 }
 
 class SmartBrickController: NSObject, CBCentralManagerDelegate {
@@ -65,9 +65,9 @@ extension SmartBrickController {
         print("didDiscover")
         if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
             if let smartBrick = SBrick(peripheral: peripheral, manufacturerData: manufacturerData) {
-                delegate?.smartBricksController(self, didDiscover: smartBrick)
+                delegate?.smartBrickController(self, didDiscover: smartBrick)
             } else if let smartBrick = SBrickPlus(peripheral: peripheral, manufacturerData: manufacturerData) {
-                delegate?.smartBricksController(self, didDiscover: smartBrick)
+                delegate?.smartBrickController(self, didDiscover: smartBrick)
             }
         }
     }

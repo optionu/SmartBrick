@@ -43,7 +43,7 @@ public final class SmartBrickManager: SmartBrickControllerDelegate {
         controller.stopScanning()
     }
 
-    func smartBricksController(_ smartBrickController: SmartBrickController, didDiscover smartBrick: SmartBrick) {
+    func smartBrickController(_ smartBrickController: SmartBrickController, didDiscover smartBrick: SmartBrick) {
         delegate?.smartBrickManager(self, didDiscover: smartBrick)
     }
 }
