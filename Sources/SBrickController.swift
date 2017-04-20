@@ -14,8 +14,22 @@ private let quickDriveCharacteristicUUID = CBUUID(string: "489a6ae0-c1ab-4c9c-bd
 private let remoteControlCommandsCharacteristicUUID = CBUUID(string: "02b8cbcc-0e25-4bda-8790-a15f53e6010f")
 private let remoteControlCharacteristicUUIDs = [quickDriveCharacteristicUUID, remoteControlCommandsCharacteristicUUID]
 
+enum SBrickChannel: UInt8 {
+    case ac1 = 0x00
+    case ac2 = 0x01
+    case bc1 = 0x02
+    case bc2 = 0x03
+    case cc1 = 0x04
+    case cc2 = 0x05
+    case dc1 = 0x06
+    case dc2 = 0x07
+    case batteryVoltage = 0x08
+    case temperature = 0x09
+}
+
 protocol SBrickControllerDelegate: class {
     func sbrickControllerDidDiscoverServices(_ sbrickController: SBrickController)
+    func sbrickController(_ sbrickController: SBrickController, didReceiveSensorValue value: UInt16, for channel: SBrickChannel)
 }
 
 class SBrickController: NSObject, CBPeripheralDelegate {

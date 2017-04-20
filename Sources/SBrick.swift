@@ -82,6 +82,10 @@ extension SBrick {
     func sbrickControllerDidDiscoverServices(_ sbrickController: SBrickController) {
         completionBlock?()
     }
+    
+    func sbrickController(_ sbrickController: SBrickController, didReceiveSensorValue value: UInt16, for channel: SBrickChannel) {
+        
+    }
 }
 
 // Letters are numbered according to SBrick app; raw values match ports
