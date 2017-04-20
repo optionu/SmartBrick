@@ -10,11 +10,11 @@ import Foundation
 
 open class SBrickInputOutput {
     open let device: SBrick
-    open let channel: SBrickChannel
+    open let port: SBrickPort
     
-    init(device: SBrick, channel: SBrickChannel) {
+    init(device: SBrick, port: SBrickPort) {
         self.device = device
-        self.channel = channel
+        self.port = port
     }
 }
 
@@ -25,31 +25,31 @@ public enum SBrickMotorDirection: UInt8 {
 
 open class SBrickMotor: SBrickInputOutput, IOChannel {
     open func drive(direction: SBrickMotorDirection, power: UInt8) {
-        let command = SBrickRemoteControlCommand.driveCommand(channel: channel, direction: direction, power: power)
+        let command = SBrickRemoteControlCommand.driveCommand(port: port, direction: direction, power: power)
         device.write(command)
     }
     
     open func `break`() {
-        let command = SBrickRemoteControlCommand.breakCommand(channel: channel)
+        let command = SBrickRemoteControlCommand.breakCommand(port: port)
         device.write(command)
     }
 }
 
 open class SBrickQuickDrive: SBrickInputOutput, IOChannel {
     // Default order: 0, 1, 2, 3/A, C, B, D
-    open func changeChannelMapping(channel0: SBrickChannel, channel1: SBrickChannel, channel2: SBrickChannel, channel3: SBrickChannel) {
-        let command = SBrickRemoteControlCommand.quickDriveSetupCommand(channel0: channel0, channel1: channel1, channel2: channel2, channel3: channel3)
+    open func changePortMapping(port0: SBrickPort, port1: SBrickPort, port2: SBrickPort, port3: SBrickPort) {
+        let command = SBrickRemoteControlCommand.quickDriveSetupCommand(port0: port0, port1: port1, port2: port2, port3: port3)
         device.write(command)
     }
     
-    open func drive(channelValues: [(direction: SBrickMotorDirection, power: UInt8)]) {
-        let command = SBrickQuickDriveCommand(channelValues: channelValues)
+    open func drive(portValues: [(direction: SBrickMotorDirection, power: UInt8)]) {
+        let command = SBrickQuickDriveCommand(portValues: portValues)
         device.write(command)
     }
 }
 
 open class SBrickMotionSensor: SBrickInputOutput, IOChannel {
     open func retrieveDistance() {
-        device.read(channel)
+        device.read(port)
     }
 }

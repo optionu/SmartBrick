@@ -84,22 +84,22 @@ extension SBrick {
     }
 }
 
-// Letters are numbered according to SBrick app; raw values match channels
+// Letters are numbered according to SBrick app; raw values match ports
 // --o--
 // aa bb
 // cc dd
 // --|--
-public enum SBrickChannel: UInt8 {
+public enum SBrickPort: UInt8 {
     case a = 0x00, b = 0x02, c = 0x01, d = 0x03
 }
 
 extension SBrick {
-    open func motor(for channel: SBrickChannel) -> SBrickMotor {
-        return SBrickMotor(device: self, channel: channel)
+    open func motor(for port: SBrickPort) -> SBrickMotor {
+        return SBrickMotor(device: self, port: port)
     }
     
-    open func quickDrive(for channel: SBrickChannel) -> SBrickQuickDrive {
-        return SBrickQuickDrive(device: self, channel: channel)
+    open func quickDrive(for port: SBrickPort) -> SBrickQuickDrive {
+        return SBrickQuickDrive(device: self, port: port)
     }
 }
 
@@ -125,7 +125,7 @@ extension SBrick {
 
 var b = true
 extension SBrick {
-    func read(_ channel: SBrickChannel) {
+    func read(_ port: SBrickPort) {
         if let remoteControlCommandsCharacteristic = controller.remoteControlCommandsCharacteristic {
             if b {
                 let command1 = SBrickRemoteControlCommand(commandIdentifier: .setUpPeriodicVoltageMeasurement, data: Data(bytes: [0x00, 0x01, 0x08, 0x09]))

@@ -27,27 +27,27 @@ struct SBrickRemoteControlCommand: SBrickCommand {
         return Data(bytes: [commandIdentifier.rawValue]) + data
     }
     
-    static func driveCommand(channel: SBrickChannel, direction: SBrickMotorDirection, power: UInt8) -> SBrickRemoteControlCommand {
-        let data = Data(bytes: [channel.rawValue, direction.rawValue, power])
+    static func driveCommand(port: SBrickPort, direction: SBrickMotorDirection, power: UInt8) -> SBrickRemoteControlCommand {
+        let data = Data(bytes: [port.rawValue, direction.rawValue, power])
         return SBrickRemoteControlCommand(commandIdentifier: .drive, data: data)
     }
     
-    static func breakCommand(channel: SBrickChannel) -> SBrickRemoteControlCommand {
+    static func breakCommand(port: SBrickPort) -> SBrickRemoteControlCommand {
         return SBrickRemoteControlCommand(commandIdentifier: .break, data: Data())
     }
     
-    static func quickDriveSetupCommand(channel0: SBrickChannel, channel1: SBrickChannel, channel2: SBrickChannel, channel3: SBrickChannel) -> SBrickRemoteControlCommand {
-        let data = Data(bytes: [channel0.rawValue, channel1.rawValue, channel2.rawValue, channel3.rawValue])
+    static func quickDriveSetupCommand(port0: SBrickPort, port1: SBrickPort, port2: SBrickPort, port3: SBrickPort) -> SBrickRemoteControlCommand {
+        let data = Data(bytes: [port0.rawValue, port1.rawValue, port2.rawValue, port3.rawValue])
         return SBrickRemoteControlCommand(commandIdentifier: .quickDriveSetup, data: data)
     }
 }
 
 struct SBrickQuickDriveCommand: SBrickCommand {
-    let channelValues: [(SBrickMotorDirection, UInt8)]
+    let portValues: [(SBrickMotorDirection, UInt8)]
     var value: Data {
         // As of Swift 3.1, can't use values.prefix(4).map (http://stackoverflow.com/questions/37931172/ambiguous-use-of-prefix-compiler-error-with-swift-3)
         // Also, Array(values.prefix(4)).map takes very long to compile thus two lines must do
-        let values = channelValues.prefix(4)
+        let values = portValues.prefix(4)
         let bytes = values.map { ($0 == .clockwise) ? $1 & 0xfe : $1 | 0x01 }
         return Data(bytes: bytes)
     }

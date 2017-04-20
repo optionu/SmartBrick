@@ -16,7 +16,7 @@ open class SBrickPlus: SBrick {
 }
 
 extension SBrick {
-    open func motionSensor(for channel: SBrickChannel) -> SBrickMotionSensor {
-        return SBrickMotionSensor(device: self, channel: channel)
+    open func motionSensor(for port: SBrickPort) -> SBrickMotionSensor {
+        return SBrickMotionSensor(device: self, port: port)
     }
 }

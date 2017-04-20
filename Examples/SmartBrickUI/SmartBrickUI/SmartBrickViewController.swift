@@ -38,22 +38,22 @@ open class SmartBrickViewController: NSViewController {
     }
     
     @IBAction func sliderChanged(_ sender: NSSlider) {
-        let channel: Int?
+        let port: Int?
         if sender == sliderA {
-            channel = 0
+            port = 0
         } else if sender == sliderB {
-            channel = 2
+            port = 2
         } else if sender == sliderC {
-            channel = 1
+            port = 1
         } else if sender == sliderD {
-            channel = 3
+            port = 3
         } else {
-            channel = nil
+            port = nil
             assert(false, "Invalid slider")
         }
         
-        if let channel = channel {
-            updateActuator?(channel, sender.integerValue)
+        if let port = port {
+            updateActuator?(port, sender.integerValue)
         }
     }
     
