@@ -98,6 +98,14 @@ class SBrickController: NSObject, CBPeripheralDelegate {
         }
     }
     
+    static func splitADCRawValue(_ raw: UInt16) -> (value: UInt16, channel: SBrickChannel)? {
+        let channelRaw = UInt8(raw & 0x000f)
+        guard let channel = SBrickChannel(rawValue: channelRaw) else { return nil }
+        let value = (raw & 0xfff0) >> 4
+        
+        return (value, channel)
+    }
+    
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         print("didUpdateNotificationState isNotifying: \(characteristic.isNotifying) value: \(String(describing: characteristic.value)) error: \(String(describing: error))")
     }
