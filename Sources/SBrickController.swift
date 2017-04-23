@@ -81,6 +81,12 @@ class SBrickController: NSObject, CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         print("didUpdateValueFor value: \(String(describing: characteristic.value)) error: \(String(describing: error))")
         
+        SBrickController.readValues(characteristic.value ?? Data())
+            .flatMap(SBrickController.splitValue)
+            .forEach { (adc: UInt16, channel: SBrickChannel) in
+                print("adc: \(adc) channel: \(channel)")
+        }
+    
         if let value = characteristic.value {
             let binaryReader = BinaryReader(withData: value, bigEndian: false)
             let adc0 = binaryReader.readUInt16()
@@ -98,12 +104,23 @@ class SBrickController: NSObject, CBPeripheralDelegate {
         }
     }
     
-    static func splitADCRawValue(_ raw: UInt16) -> (value: UInt16, channel: SBrickChannel)? {
+    static func readValues(_ data: Data) -> [UInt16] {
+        var values = [UInt16]()
+        
+        let binaryReader = BinaryReader(withData: data, bigEndian: false)
+        while binaryReader.canRead(numberOfBytes: MemoryLayout<UInt16>.size) {
+            values.append(binaryReader.readUInt16())
+        }
+        
+        return values
+    }
+    
+    static func splitValue(_ raw: UInt16) -> (adc: UInt16, channel: SBrickChannel)? {
         let channelRaw = UInt8(raw & 0x000f)
         guard let channel = SBrickChannel(rawValue: channelRaw) else { return nil }
-        let value = (raw & 0xfff0) >> 4
+        let adc = (raw & 0xfff0) >> 4
         
-        return (value, channel)
+        return (adc, channel)
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
