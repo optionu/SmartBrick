@@ -97,7 +97,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0830;
-				ORGANIZATIONNAME = "Claus Höfele";
+				ORGANIZATIONNAME = "SmartBrick UI";
 				TargetAttributes = {
 					620339BA1EA122880037F665 = {
 						CreatedOnToolsVersion = 8.3.1;
