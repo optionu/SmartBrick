@@ -48,8 +48,22 @@ open class SBrickQuickDrive: SBrickInputOutput, IOChannel {
     }
 }
 
-open class SBrickMotionSensor: SBrickInputOutput, IOChannel {
+open class SBrickMotionSensor: SBrickInputOutput, IOChannel, SBrickDelegate {
+    override init(device: SBrick, port: SBrickPort) {
+        super.init(device: device, port: port)
+        
+        device.delegates.append(self)
+    }
+    
+    deinit {
+        device.delegates.remove(self)
+    }
+    
     open func retrieveDistance() {
         device.read(port)
+    }
+    
+    func sbrick(_ sbrick: SBrick, didReceiveSensorValue value: UInt16, for channel: SBrickChannel) {
+        print("SBrickMotionSensor didReceiveSensorValue")
     }
 }

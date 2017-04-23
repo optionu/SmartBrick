@@ -9,12 +9,13 @@
 import Foundation
 import CoreBluetooth
 
-private let quickDriveCharacteristicUUID = CBUUID(string: "489a6ae0-c1ab-4c9c-bdb2-11d373c1b7fb")
-private let remoteControlCommandsCharacteristicUUID = CBUUID(string: "02b8cbcc-0e25-4bda-8790-a15f53e6010f")
-private let remoteControlCharacteristicUUIDs = [quickDriveCharacteristicUUID, remoteControlCommandsCharacteristicUUID]
+protocol SBrickDelegate {
+    func sbrick(_ sbrick: SBrick, didReceiveSensorValue value: UInt16, for channel: SBrickChannel)
+}
 
-open class SBrick: SmartBrick, SBrickControllerDelegate {
+open class SBrick: SmartBrick {
     public let peripheral: CBPeripheral
+    var delegates = MulticastDelegate<SBrickDelegate>()
     fileprivate var completionBlock: (() -> Void)?
     fileprivate let controller: SBrickController
     
@@ -78,13 +79,15 @@ open class SBrick: SmartBrick, SBrickControllerDelegate {
     }
 }
 
-extension SBrick {
+extension SBrick: SBrickControllerDelegate {
     func sbrickControllerDidDiscoverServices(_ sbrickController: SBrickController) {
         completionBlock?()
     }
     
     func sbrickController(_ sbrickController: SBrickController, didReceiveSensorValue value: UInt16, for channel: SBrickChannel) {
-        
+        delegates.invoke { delegate in
+            delegate.sbrick(self, didReceiveSensorValue: value, for: channel)
+        }
     }
 }
 
