@@ -85,22 +85,7 @@ class SBrickController: NSObject, CBPeripheralDelegate {
             .flatMap(SBrickController.splitValue)
             .forEach { (adc: UInt16, channel: SBrickChannel) in
                 print("adc: \(adc) channel: \(channel)")
-        }
-    
-        if let value = characteristic.value {
-            let binaryReader = BinaryReader(withData: value, bigEndian: false)
-            let adc0 = binaryReader.readUInt16()
-            let adc1 = binaryReader.readUInt16()
-            let adc2 = binaryReader.readUInt16()
-            let adc3 = binaryReader.readUInt16()
-            let voltage = Double(adc2) * 0.83875 / 2047.0;
-            let voltagec = Double(adc2 & 0xfff0) * 0.83875 / 2047.0;
-            let temperature = Double(adc3) / 118.85795 - 160
-            let temperaturec = Double(adc3 & 0xfff0) / 118.85795 - 160
-            print("value: \(value.map { String(format: "%02hhx", $0) }.joined())")
-            print("adc0: \(adc0), adc1: \(adc1 >> 4), adc2: \(adc2), adc3: \(adc3)")
-            print("voltage: \(voltage), temperature: \(temperature)")
-            print("voltagec: \(voltagec), temperaturec: \(temperaturec)")
+                delegate?.sbrickController(self, didReceiveSensorValue: adc, for: channel)
         }
     }
     
