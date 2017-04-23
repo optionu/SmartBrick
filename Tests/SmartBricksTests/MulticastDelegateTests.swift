@@ -9,11 +9,11 @@
 import XCTest
 @testable import SmartBrick
 
-protocol TestDelegate {
+private protocol TestDelegate {
     func doThis()
 }
 
-class DelegateTestClass: TestDelegate {
+private class DelegateTestClass: TestDelegate {
     func doThis() {}
 }
 

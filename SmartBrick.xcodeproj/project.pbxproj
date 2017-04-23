@@ -32,6 +32,10 @@
 		6215EEA11EA803C50039839A /* SBrickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6215EE9F1EA803C50039839A /* SBrickController.swift */; };
 		6215EEA31EACFC610039839A /* SBrickControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6215EEA21EACFC610039839A /* SBrickControllerTests.swift */; };
 		6215EEA41EACFC610039839A /* SBrickControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6215EEA21EACFC610039839A /* SBrickControllerTests.swift */; };
+		6215EEA61EAD48870039839A /* SBrickDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6215EEA51EAD48870039839A /* SBrickDelegates.swift */; };
+		6215EEA71EAD48870039839A /* SBrickDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6215EEA51EAD48870039839A /* SBrickDelegates.swift */; };
+		6215EEA91EAD4B7D0039839A /* SBrickDelegatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6215EEA81EAD4B7D0039839A /* SBrickDelegatesTests.swift */; };
+		6215EEAA1EAD4B7D0039839A /* SBrickDelegatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6215EEA81EAD4B7D0039839A /* SBrickDelegatesTests.swift */; };
 		6250A6A11E9ACA9F007934FB /* SmartBricksManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250A6A01E9ACA9F007934FB /* SmartBricksManagerTests.swift */; };
 		6250A6A21E9ACA9F007934FB /* SmartBricksManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250A6A01E9ACA9F007934FB /* SmartBricksManagerTests.swift */; };
 		6250A6A61E9C263B007934FB /* SBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6250A6A31E9C25A3007934FB /* SBrick.swift */; };
@@ -80,6 +84,8 @@
 		6215EE9A1EA7FAB10039839A /* MulticastDelegateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MulticastDelegateTests.swift; sourceTree = "<group>"; };
 		6215EE9F1EA803C50039839A /* SBrickController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickController.swift; sourceTree = "<group>"; };
 		6215EEA21EACFC610039839A /* SBrickControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickControllerTests.swift; sourceTree = "<group>"; };
+		6215EEA51EAD48870039839A /* SBrickDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickDelegates.swift; sourceTree = "<group>"; };
+		6215EEA81EAD4B7D0039839A /* SBrickDelegatesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickDelegatesTests.swift; sourceTree = "<group>"; };
 		6250A6A01E9ACA9F007934FB /* SmartBricksManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBricksManagerTests.swift; sourceTree = "<group>"; };
 		6250A6A31E9C25A3007934FB /* SBrick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrick.swift; sourceTree = "<group>"; };
 		6250A6A81E9C2D2D007934FB /* SBrickPlus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBrickPlus.swift; sourceTree = "<group>"; };
@@ -136,6 +142,7 @@
 				6250A6A31E9C25A3007934FB /* SBrick.swift */,
 				6250A6A81E9C2D2D007934FB /* SBrickPlus.swift */,
 				6215EE9F1EA803C50039839A /* SBrickController.swift */,
+				6215EEA51EAD48870039839A /* SBrickDelegates.swift */,
 				620339D01EA375EF0037F665 /* SBrickIOChannels.swift */,
 				620339CC1EA285230037F665 /* SBrickCommands.swift */,
 				6215EE971EA7F9A30039839A /* MulticastDelegate.swift */,
@@ -159,6 +166,7 @@
 				039CD9951E92A4A2006D4992 /* SBrickTests.swift */,
 				6250A6AD1E9C3AB3007934FB /* SBrickPlusTests.swift */,
 				6215EEA21EACFC610039839A /* SBrickControllerTests.swift */,
+				6215EEA81EAD4B7D0039839A /* SBrickDelegatesTests.swift */,
 				620339D31EA3782A0037F665 /* SBrickCommandsTests.swift */,
 				6215EE9A1EA7FAB10039839A /* MulticastDelegateTests.swift */,
 			);
@@ -395,6 +403,7 @@
 				034CFE751E97BE4C004F43DF /* SmartBrickController.swift in Sources */,
 				6250A6AC1E9C2D5E007934FB /* SBrickPlus.swift in Sources */,
 				6215EEA01EA803C50039839A /* SBrickController.swift in Sources */,
+				6215EEA61EAD48870039839A /* SBrickDelegates.swift in Sources */,
 				6215EE981EA7F9A30039839A /* MulticastDelegate.swift in Sources */,
 				620339CD1EA285230037F665 /* SBrickCommands.swift in Sources */,
 				034CFE781E97BF14004F43DF /* NearestDeviceHelper.swift in Sources */,
@@ -409,6 +418,7 @@
 				039CD9991E92A4B8006D4992 /* SBrickTests.swift in Sources */,
 				6250A6AE1E9C3AB3007934FB /* SBrickPlusTests.swift in Sources */,
 				6250A6A11E9ACA9F007934FB /* SmartBricksManagerTests.swift in Sources */,
+				6215EEA91EAD4B7D0039839A /* SBrickDelegatesTests.swift in Sources */,
 				6215EE9D1EA7FAE20039839A /* MulticastDelegateTests.swift in Sources */,
 				62CCA8D01E9587E200F00B80 /* BinaryReaderTests.swift in Sources */,
 				620339D41EA3782A0037F665 /* SBrickCommandsTests.swift in Sources */,
@@ -427,6 +437,7 @@
 				62CCA8CE1E95848E00F00B80 /* BinaryReader.swift in Sources */,
 				034CFE761E97BE76004F43DF /* SmartBrickController.swift in Sources */,
 				6215EEA11EA803C50039839A /* SBrickController.swift in Sources */,
+				6215EEA71EAD48870039839A /* SBrickDelegates.swift in Sources */,
 				6215EE991EA7F9A30039839A /* MulticastDelegate.swift in Sources */,
 				6250A6AB1E9C2D5E007934FB /* SBrickPlus.swift in Sources */,
 				03854A891E97E5D100FA105A /* NearestDeviceHelper.swift in Sources */,
@@ -441,6 +452,7 @@
 				039CD99A1E92A4B9006D4992 /* SBrickTests.swift in Sources */,
 				6250A6AF1E9C3AB3007934FB /* SBrickPlusTests.swift in Sources */,
 				6250A6A21E9ACA9F007934FB /* SmartBricksManagerTests.swift in Sources */,
+				6215EEAA1EAD4B7D0039839A /* SBrickDelegatesTests.swift in Sources */,
 				6215EE9E1EA7FAE20039839A /* MulticastDelegateTests.swift in Sources */,
 				62CCA8D11E9587E200F00B80 /* BinaryReaderTests.swift in Sources */,
 				620339D51EA3782A0037F665 /* SBrickCommandsTests.swift in Sources */,
