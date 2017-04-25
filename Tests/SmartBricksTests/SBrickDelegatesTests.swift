@@ -15,9 +15,16 @@ private class DelegateTestClass: SBrickDelegate {
 }
 
 class SBrickDelegatesTests: XCTestCase {
+    var delegates: SBrickDelegates!
+    
+    override func setUp() {
+        super.setUp()
+        
+        delegates = SBrickDelegates()
+    }
+    
     func testRegister() {
         let delegateTestClass = DelegateTestClass()
-        let delegates = SBrickDelegates()
         
         delegates.register(delegateTestClass, for: .ac1)
         XCTAssertEqual(delegates.delegates[.ac1]?.count, 1)
@@ -26,17 +33,14 @@ class SBrickDelegatesTests: XCTestCase {
     
     func testUnregister() {
         let delegateTestClass = DelegateTestClass()
-        let delegates = SBrickDelegates()
-        
         delegates.register(delegateTestClass, for: .ac1)
+        
         delegates.unregister(delegateTestClass)
         XCTAssertEqual(delegates.delegates[.ac1]?.count, 0)
         XCTAssertEqual(delegates.registeredChannels, [])
     }
     
     func testUnregisterDifferentDelegate() {
-        let delegates = SBrickDelegates()
-        
         let delegateTestClass0 = DelegateTestClass()
         delegates.register(delegateTestClass0, for: .ac1)
         let delegateTestClass1 = DelegateTestClass()
@@ -49,10 +53,9 @@ class SBrickDelegatesTests: XCTestCase {
     
     func testUnregisterSameDelegateMultipleChannels() {
         let delegateTestClass = DelegateTestClass()
-        let delegates = SBrickDelegates()
-        
         delegates.register(delegateTestClass, for: .ac1)
         delegates.register(delegateTestClass, for: .bc1)
+        
         delegates.unregister(delegateTestClass)
         XCTAssertEqual(delegates.delegates[.ac1]?.count, 0)
         XCTAssertEqual(delegates.registeredChannels, [])
