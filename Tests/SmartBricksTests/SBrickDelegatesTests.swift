@@ -34,11 +34,22 @@ class SBrickDelegatesTests: XCTestCase {
         XCTAssertEqual(delegates.registeredChannels, [])
     }
     
+    func testUnregisterSameDelegateMultipleChannels() {
+        let delegateTestClass = DelegateTestClass()
+        let delegates = SBrickDelegates()
+        
+        delegates.register(delegateTestClass, for: .ac1)
+        delegates.register(delegateTestClass, for: .bc1)
+        delegates.unregister(delegateTestClass)
+        XCTAssertEqual(delegates.delegates[.ac1]?.count, 0)
+        XCTAssertEqual(delegates.registeredChannels, [])
+    }
+    
     // Register same channel twice for delegate
     // Register same channel for two different delegates
     // Register same delegate with different channels
     // Has registered for new channel
     
-    // Unregister for all channels
+    // Unregister one, but keep other
     // Automatic unregistration
 }
