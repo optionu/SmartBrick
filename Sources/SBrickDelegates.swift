@@ -30,5 +30,8 @@ class SBrickDelegates {
     }
     
     func dispatch(_ sbrick: SBrick, didReceiveSensorValue value: UInt16, for channel: SBrickChannel) {
+        delegates[channel]?.invoke { delegate in
+            delegate.sbrick(sbrick, didReceiveSensorValue: value, for: channel)
+        }
     }
 }
