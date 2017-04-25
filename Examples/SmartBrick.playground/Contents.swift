@@ -21,6 +21,7 @@ smartBricksManager.connectToNearestDevice() { smartBrick in
     }
 }
 
+var motionSensor: SBrickMotionSensor?
 viewController.updateActuator = { portValue, powerValue in
 //    let port = SBrickPort(rawValue: UInt8(portValue)) ?? .a
 //    let motor = connectedSmartBrick?.motor(for: port)
@@ -36,6 +37,6 @@ viewController.updateActuator = { portValue, powerValue in
 //    quickDrive?.drive(portValues: [(direction, power)])
 
     let port = SBrickPort(rawValue: UInt8(portValue)) ?? .a
-    let motionSensor = connectedSmartBrick?.motionSensor(for: port)
+    motionSensor = connectedSmartBrick?.motionSensor(for: port)
     motionSensor?.retrieveDistance()
 }

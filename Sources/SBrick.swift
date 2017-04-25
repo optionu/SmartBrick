@@ -15,7 +15,8 @@ protocol SBrickDelegate {
 
 open class SBrick: SmartBrick {
     public let peripheral: CBPeripheral
-    var delegates = MulticastDelegate<SBrickDelegate>()
+    
+    var delegates = SBrickDelegates()
     fileprivate var completionBlock: (() -> Void)?
     fileprivate let controller: SBrickController
     
@@ -85,9 +86,7 @@ extension SBrick: SBrickControllerDelegate {
     }
     
     func sbrickController(_ sbrickController: SBrickController, didReceiveSensorValue value: UInt16, for channel: SBrickChannel) {
-        delegates.invoke { delegate in
-            delegate.sbrick(self, didReceiveSensorValue: value, for: channel)
-        }
+        delegates.dispatch(self, didReceiveSensorValue: value, for: channel)
     }
 }
 
