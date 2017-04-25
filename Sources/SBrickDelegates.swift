@@ -16,10 +16,11 @@ class SBrickDelegates {
     
     @discardableResult func register(_ delegate: SBrickDelegate, for channel: SBrickChannel) -> Bool {
         let channelDelegates = delegates[channel] ?? MulticastDelegate<SBrickDelegate>()
+        let hasRegisteredForNewChannel = channelDelegates.count == 0
         channelDelegates.append(delegate)
         delegates[channel] = channelDelegates
         
-        return true // has registered for new channel
+        return hasRegisteredForNewChannel
     }
     
     func unregister(_ delegate: SBrickDelegate) {

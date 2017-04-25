@@ -60,6 +60,18 @@ class SBrickDelegatesTests: XCTestCase {
         XCTAssertEqual(delegates.registeredChannels, [.bc2, .cc1])
     }
     
+    func testRegisteredNewChannels() {
+        let delegateTestClass0 = DelegateTestClass()
+        let delegateTestClass1 = DelegateTestClass()
+        
+        XCTAssertTrue(delegates.register(delegateTestClass0, for: .ac1))
+        XCTAssertFalse(delegates.register(delegateTestClass0, for: .ac1))
+        XCTAssertTrue(delegates.register(delegateTestClass0, for: .dc1))
+        
+        XCTAssertFalse(delegates.register(delegateTestClass1, for: .ac1))
+        XCTAssertTrue(delegates.register(delegateTestClass1, for: .bc2))
+    }
+    
     func testUnregister() {
         let delegateTestClass = DelegateTestClass()
         delegates.register(delegateTestClass, for: .ac1)
@@ -99,6 +111,4 @@ class SBrickDelegatesTests: XCTestCase {
         XCTAssertEqual(delegates.delegates[.ac1]?.count, 0)
         XCTAssertEqual(delegates.registeredChannels, [])
     }
-    
-    // Has registered for new channel
 }
