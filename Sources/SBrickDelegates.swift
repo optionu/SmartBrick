@@ -11,7 +11,7 @@ import Foundation
 class SBrickDelegates {
     private(set) var delegates = [SBrickChannel: MulticastDelegate<SBrickDelegate>]()
     var registeredChannels: [SBrickChannel] {
-        return Array(delegates.keys)
+        return Array(delegates.keys.filter({ self.delegates[$0]?.count != 0 }))
     }
     
     @discardableResult func register(_ delegate: SBrickDelegate, for channel: SBrickChannel) -> Bool {
@@ -23,6 +23,9 @@ class SBrickDelegates {
     }
     
     func unregister(_ delegate: SBrickDelegate) {
+        for channelDelegates in delegates.values {
+            channelDelegates.remove(delegate)
+        }
     }
     
     func dispatch(_ sbrick: SBrick, didReceiveSensorValue value: UInt16, for channel: SBrickChannel) {

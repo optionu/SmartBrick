@@ -15,7 +15,7 @@ private class DelegateTestClass: SBrickDelegate {
 }
 
 class SBrickDelegatesTests: XCTestCase {
-    func testAppend() {
+    func testRegister() {
         let delegateTestClass = DelegateTestClass()
         let delegates = SBrickDelegates()
         
@@ -24,11 +24,21 @@ class SBrickDelegatesTests: XCTestCase {
         XCTAssertEqual(delegates.registeredChannels, [.ac1])
     }
     
+    func testUnregister() {
+        let delegateTestClass = DelegateTestClass()
+        let delegates = SBrickDelegates()
+        
+        delegates.register(delegateTestClass, for: .ac1)
+        delegates.unregister(delegateTestClass)
+        XCTAssertEqual(delegates.delegates[.ac1]?.count, 0)
+        XCTAssertEqual(delegates.registeredChannels, [])
+    }
+    
     // Register same channel twice for delegate
     // Register same channel for two different delegates
     // Register same delegate with different channels
+    // Has registered for new channel
     
-    // Unregister
     // Unregister for all channels
     // Automatic unregistration
 }
