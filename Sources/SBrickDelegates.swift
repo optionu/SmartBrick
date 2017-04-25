@@ -10,8 +10,8 @@ import Foundation
 
 class SBrickDelegates {
     private(set) var delegates = [SBrickChannel: MulticastDelegate<SBrickDelegate>]()
-    var registeredChannels: [SBrickChannel] {
-        return Array(delegates.keys.filter({ self.delegates[$0]?.count != 0 }))
+    var registeredChannels: Set<SBrickChannel> {
+        return Set(delegates.keys.filter({ self.delegates[$0]?.count != 0 }))
     }
     
     @discardableResult func register(_ delegate: SBrickDelegate, for channel: SBrickChannel) -> Bool {
