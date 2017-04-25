@@ -31,6 +31,24 @@ class SBrickDelegatesTests: XCTestCase {
         XCTAssertEqual(delegates.registeredChannels, [.ac1])
     }
     
+    func testRegisterSameDelegateSameChannelTwice() {
+        let delegateTestClass = DelegateTestClass()
+        
+        delegates.register(delegateTestClass, for: .ac1)
+        delegates.register(delegateTestClass, for: .ac1)
+        XCTAssertEqual(delegates.delegates[.ac1]?.count, 1)
+        XCTAssertEqual(delegates.registeredChannels, [.ac1])
+    }
+    
+    func testRegisterMultipleDelegatesSameChannel() {
+        let delegateTestClass0 = DelegateTestClass()
+        delegates.register(delegateTestClass0, for: .ac1)
+        let delegateTestClass1 = DelegateTestClass()
+        delegates.register(delegateTestClass1, for: .ac1)
+        XCTAssertEqual(delegates.delegates[.ac1]?.count, 2)
+        XCTAssertEqual(delegates.registeredChannels, [.ac1])
+    }
+    
     func testUnregister() {
         let delegateTestClass = DelegateTestClass()
         delegates.register(delegateTestClass, for: .ac1)
@@ -71,8 +89,6 @@ class SBrickDelegatesTests: XCTestCase {
         XCTAssertEqual(delegates.registeredChannels, [])
     }
     
-    // Register same channel twice for delegate
-    // Register same channel for two different delegates
     // Register same delegate with different channels
     // Has registered for new channel
 }
