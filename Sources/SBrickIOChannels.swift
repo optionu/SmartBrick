@@ -52,7 +52,8 @@ open class SBrickMotionSensor: SBrickInputOutput, IOChannel, SBrickDelegate {
     override init(device: SBrick, port: SBrickPort) {
         super.init(device: device, port: port)
         
-        device.delegates.register(self, for: .ac2)
+        let channel = SBrickChannel(port: port, channel1: false)
+        device.delegates.register(self, for: channel)
     }
 
     open func retrieveDistance() {

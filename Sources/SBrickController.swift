@@ -17,14 +17,27 @@ private let remoteControlCharacteristicUUIDs = [quickDriveCharacteristicUUID, re
 enum SBrickChannel: UInt8 {
     case ac1 = 0x00
     case ac2 = 0x01
-    case bc1 = 0x02
-    case bc2 = 0x03
-    case cc1 = 0x04
-    case cc2 = 0x05
+    case bc1 = 0x04
+    case bc2 = 0x05
+    case cc1 = 0x02
+    case cc2 = 0x03
     case dc1 = 0x06
     case dc2 = 0x07
     case batteryVoltage = 0x08
     case temperature = 0x09
+    
+    init(port: SBrickPort, channel1: Bool) {
+        switch port {
+        case .a:
+            self = channel1 ? .ac1 : .ac2
+        case .b:
+            self = channel1 ? .bc1 : .bc2
+        case .c:
+            self = channel1 ? .cc1 : .cc2
+        case .d:
+            self = channel1 ? .dc1 : .dc2
+        }
+    }
 }
 
 protocol SBrickControllerDelegate: class {

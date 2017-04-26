@@ -18,9 +18,9 @@ class SBrickControllerTests: XCTestCase {
     }
     
     func testSplitValueChannelIndependent() {
-        XCTAssertEqual(SBrickController.splitValue(0x0003)?.channel, .bc2)
-        XCTAssertEqual(SBrickController.splitValue(0xfff3)?.channel, .bc2)
-        XCTAssertEqual(SBrickController.splitValue(0x1233)?.channel, .bc2)
+        XCTAssertEqual(SBrickController.splitValue(0x0003)?.channel, .cc2)
+        XCTAssertEqual(SBrickController.splitValue(0xfff3)?.channel, .cc2)
+        XCTAssertEqual(SBrickController.splitValue(0x1233)?.channel, .cc2)
     }
     
     func testSplitValueChannelInvalid() {
@@ -44,5 +44,16 @@ class SBrickControllerTests: XCTestCase {
         XCTAssertEqual(SBrickController.readValues(Data(bytes: [0x12, 0xf0])), [0xf012])
         XCTAssertEqual(SBrickController.readValues(Data(bytes: [0x12, 0xf0, 0xff])), [0xf012])
         XCTAssertEqual(SBrickController.readValues(Data(bytes: [0x12, 0xf0, 0xff, 0x00])), [0xf012, 0x00ff])
+    }
+    
+    func testChannelFromPort() {
+        XCTAssertEqual(SBrickChannel(port: .a, channel1: true), .ac1)
+        XCTAssertEqual(SBrickChannel(port: .a, channel1: false), .ac2)
+        XCTAssertEqual(SBrickChannel(port: .b, channel1: true), .bc1)
+        XCTAssertEqual(SBrickChannel(port: .b, channel1: false), .bc2)
+        XCTAssertEqual(SBrickChannel(port: .c, channel1: true), .cc1)
+        XCTAssertEqual(SBrickChannel(port: .c, channel1: false), .cc2)
+        XCTAssertEqual(SBrickChannel(port: .d, channel1: true), .dc1)
+        XCTAssertEqual(SBrickChannel(port: .d, channel1: false), .dc2)
     }
 }
