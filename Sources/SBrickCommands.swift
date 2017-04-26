@@ -19,7 +19,6 @@ struct SBrickRemoteControlCommand: SBrickCommand {
         case quickDriveSetup = 0x0b
         case queryADC = 0x0f
         case setUpPeriodicVoltageMeasurement = 0x2c
-        case setUpPeriodicVoltageNotifications = 0x2e
     }
     let commandIdentifier: CommandIdentifier
     let data: Data
@@ -39,6 +38,22 @@ struct SBrickRemoteControlCommand: SBrickCommand {
     static func quickDriveSetupCommand(port0: SBrickPort, port1: SBrickPort, port2: SBrickPort, port3: SBrickPort) -> SBrickRemoteControlCommand {
         let data = Data(bytes: [port0.rawValue, port1.rawValue, port2.rawValue, port3.rawValue])
         return SBrickRemoteControlCommand(commandIdentifier: .quickDriveSetup, data: data)
+    }
+    
+    static func queryADCCommand(channels: Set<SBrickChannel>) -> SBrickRemoteControlCommand {
+        let data = Data(channels
+            .map({ $0.rawValue })
+            .sorted())
+        return SBrickRemoteControlCommand(commandIdentifier: .queryADC, data: data)
+    }
+    
+    static func setUpPeriodicVoltageMeasurementCommand(channels: Set<SBrickChannel>) -> SBrickRemoteControlCommand {
+        // .batteryVoltage and .temperature are always measured
+        let data = Data(channels
+            .filter({ $0 != .batteryVoltage && $0 != .temperature })
+            .map({ $0.rawValue })
+            .sorted())
+        return SBrickRemoteControlCommand(commandIdentifier: .setUpPeriodicVoltageMeasurement, data: data)
     }
 }
 

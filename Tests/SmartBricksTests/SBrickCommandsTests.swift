@@ -32,6 +32,16 @@ class SBrickCommandsTests: XCTestCase {
         XCTAssertEqual(command.value, Data(bytes: [0x0b, 0x00, 0x01, 0x02, 0x03]))
     }
     
+    func testQueryADCCommand() {
+        let command: SBrickCommand = SBrickRemoteControlCommand.queryADCCommand(channels: [.ac1, .ac2, .cc1, .batteryVoltage])
+        XCTAssertEqual(command.value, Data(bytes: [0x0f, 0x00, 0x01, 0x02, 0x08]))
+    }
+    
+    func testSetUpPeriodicVoltageMeasurementCommand() {
+        let command: SBrickCommand = SBrickRemoteControlCommand.setUpPeriodicVoltageMeasurementCommand(channels: [.ac1, .ac2, .cc1, .batteryVoltage])
+        XCTAssertEqual(command.value, Data(bytes: [0x2c, 0x00, 0x01, 0x02]))
+    }
+    
     func testQuickDriveCommand() {
         let portValues: [(SBrickMotorDirection, UInt8)] = [(.clockwise, 100), (.counterclockwise, 123)]
         let command = SBrickQuickDriveCommand(portValues: portValues)
@@ -57,13 +67,3 @@ class SBrickCommandsTests: XCTestCase {
         XCTAssertEqual(SBrickQuickDriveCommand(portValues: Array(repeating: portValue, count: 5)).value.count, 4)
     }
 }
-
-#if os(Linux)
-    extension SBrickInputOuputsTests {
-        static var allTests : [(String, (SmartBricksTests) -> () throws -> Void)] {
-            return [
-                ("testExample", testExample),
-            ]
-        }
-    }
-#endif

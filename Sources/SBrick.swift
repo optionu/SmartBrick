@@ -134,13 +134,14 @@ extension SBrick {
     func read(_ port: SBrickPort) {
         if let remoteControlCommandsCharacteristic = controller.remoteControlCommandsCharacteristic {
             if b {
-                let command1 = SBrickRemoteControlCommand(commandIdentifier: .setUpPeriodicVoltageMeasurement, data: Data(bytes: [0x00, 0x01, 0x08, 0x09]))
-                write(command1, characteristic: remoteControlCommandsCharacteristic)
+                let command = SBrickRemoteControlCommand.setUpPeriodicVoltageMeasurementCommand(channels: [.ac1, .ac2])
+                write(command)
                 
                 b = false
             }
-            let command2 = SBrickRemoteControlCommand(commandIdentifier: .queryADC, data: Data(bytes: [0x00, 0x01, 0x08, 0x09]))
-            write(command2, characteristic: remoteControlCommandsCharacteristic)
+            
+            let command = SBrickRemoteControlCommand.queryADCCommand(channels: [.ac1, .ac2, .batteryVoltage, .temperature])
+            write(command)
 
             peripheral.readValue(for: remoteControlCommandsCharacteristic)
         }
