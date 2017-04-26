@@ -17,6 +17,7 @@ open class SBrick: SmartBrick {
     public let peripheral: CBPeripheral
     
     var delegates = SBrickDelegates()
+    fileprivate var registeredChannels = Set<SBrickChannel>()
     fileprivate var completionBlock: (() -> Void)?
     fileprivate let controller: SBrickController
     
@@ -129,18 +130,18 @@ extension SBrick {
     }
 }
 
-var b = true
 extension SBrick {
     func read(_ port: SBrickPort) {
         if let remoteControlCommandsCharacteristic = controller.remoteControlCommandsCharacteristic {
-            if b {
-                let command = SBrickRemoteControlCommand.setUpPeriodicVoltageMeasurementCommand(channels: [.ac1, .ac2])
+            let delegatesRegisteredChannels = delegates.registeredChannels
+            if registeredChannels != delegatesRegisteredChannels {
+                let command = SBrickRemoteControlCommand.setUpPeriodicVoltageMeasurementCommand(channels: delegatesRegisteredChannels)
                 write(command)
                 
-                b = false
+                registeredChannels = delegatesRegisteredChannels
             }
             
-            let command = SBrickRemoteControlCommand.queryADCCommand(channels: [.ac1, .ac2, .batteryVoltage, .temperature])
+            let command = SBrickRemoteControlCommand.queryADCCommand(channels: registeredChannels)
             write(command)
 
             peripheral.readValue(for: remoteControlCommandsCharacteristic)
