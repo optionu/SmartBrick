@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:SmartBricksUI.xcodeproj">
+      location = "container:SmartBrick UI.xcodeproj">
    </FileRef>
 </Workspace>

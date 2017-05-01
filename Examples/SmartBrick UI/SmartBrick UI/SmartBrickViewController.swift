@@ -8,7 +8,7 @@
 
 import Cocoa
 
-open class SmartBrickViewController: NSViewController {
+class SmartBrickViewController: NSViewController {
     @IBOutlet weak var sliderA: NSSlider!
     @IBOutlet weak var sliderB: NSSlider!
     @IBOutlet weak var sliderC: NSSlider!
@@ -23,17 +23,17 @@ open class SmartBrickViewController: NSViewController {
     @IBOutlet weak var connectProgressIndicator: NSProgressIndicator!
     @IBOutlet weak var deviceNameLabel: NSTextField!
     
-    public enum ConnectionState {
+    enum ConnectionState {
         case connecting
         case connected(String)
     }
-    open var connectionState: ConnectionState = .connecting { didSet {
+    var connectionState: ConnectionState = .connecting { didSet {
             updateConnectionState()
         }
     }
-    open var updateActuator: ((Int, Int) -> Void)?
+    var updateActuator: ((Int, Int) -> Void)?
     
-    open override func viewDidLoad() {
+    override func viewDidLoad() {
         updateConnectionState()
     }
     

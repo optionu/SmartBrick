@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "620339BA1EA122880037F665"
-               BuildableName = "SmartBrickUI.framework"
-               BlueprintName = "SmartBrickUI"
-               ReferencedContainer = "container:SmartBrickUI.xcodeproj">
+               BlueprintIdentifier = "622B3AF41EB72AFA0011D651"
+               BuildableName = "SmartBrick UI.app"
+               BlueprintName = "SmartBrick UI"
+               ReferencedContainer = "container:SmartBrick UI.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "52D6DA0E1BF000BD002C0205"
+               BuildableName = "SmartBrick.framework"
+               BlueprintName = "SmartBrick-macOS"
+               ReferencedContainer = "container:../../SmartBrick.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +43,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "622B3AF41EB72AFA0011D651"
+            BuildableName = "SmartBrick UI.app"
+            BlueprintName = "SmartBrick UI"
+            ReferencedContainer = "container:SmartBrick UI.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +65,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "620339BA1EA122880037F665"
-            BuildableName = "SmartBrickUI.framework"
-            BlueprintName = "SmartBrickUI"
-            ReferencedContainer = "container:SmartBrickUI.xcodeproj">
+            BlueprintIdentifier = "622B3AF41EB72AFA0011D651"
+            BuildableName = "SmartBrick UI.app"
+            BlueprintName = "SmartBrick UI"
+            ReferencedContainer = "container:SmartBrick UI.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +84,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "620339BA1EA122880037F665"
-            BuildableName = "SmartBrickUI.framework"
-            BlueprintName = "SmartBrickUI"
-            ReferencedContainer = "container:SmartBrickUI.xcodeproj">
+            BlueprintIdentifier = "622B3AF41EB72AFA0011D651"
+            BuildableName = "SmartBrick UI.app"
+            BlueprintName = "SmartBrick UI"
+            ReferencedContainer = "container:SmartBrick UI.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

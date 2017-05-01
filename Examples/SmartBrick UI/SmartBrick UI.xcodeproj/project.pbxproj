@@ -1,0 +1,400 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		622B3AF91EB72AFA0011D651 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622B3AF81EB72AFA0011D651 /* AppDelegate.swift */; };
+		622B3AFB1EB72AFA0011D651 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622B3AFA1EB72AFA0011D651 /* SplitViewController.swift */; };
+		622B3AFD1EB72AFA0011D651 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 622B3AFC1EB72AFA0011D651 /* Assets.xcassets */; };
+		622B3B001EB72AFA0011D651 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622B3AFE1EB72AFA0011D651 /* Main.storyboard */; };
+		622B3B081EB72E360011D651 /* SmartBrickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622B3B071EB72E360011D651 /* SmartBrickViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		625668121EB73503002F3FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6256680B1EB73503002F3FE8 /* SmartBrick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52D6D97C1BEFF229002C0205;
+			remoteInfo = "SmartBrick-iOS";
+		};
+		625668141EB73503002F3FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6256680B1EB73503002F3FE8 /* SmartBrick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52D6DA0F1BF000BD002C0205;
+			remoteInfo = "SmartBrick-macOS";
+		};
+		625668161EB73503002F3FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6256680B1EB73503002F3FE8 /* SmartBrick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 52D6D9861BEFF229002C0205;
+			remoteInfo = "SmartBrick-iOS Tests";
+		};
+		625668181EB73503002F3FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6256680B1EB73503002F3FE8 /* SmartBrick.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DD75027A1C68FCFC006590AF;
+			remoteInfo = "SmartBrick-macOS Tests";
+		};
+		6256681A1EB73559002F3FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6256680B1EB73503002F3FE8 /* SmartBrick.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 52D6DA0E1BF000BD002C0205;
+			remoteInfo = "SmartBrick-macOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		622B3AF51EB72AFA0011D651 /* SmartBrick UI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SmartBrick UI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		622B3AF81EB72AFA0011D651 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		622B3AFA1EB72AFA0011D651 /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		622B3AFC1EB72AFA0011D651 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		622B3AFF1EB72AFA0011D651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		622B3B011EB72AFA0011D651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		622B3B071EB72E360011D651 /* SmartBrickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBrickViewController.swift; sourceTree = "<group>"; };
+		6256680B1EB73503002F3FE8 /* SmartBrick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SmartBrick.xcodeproj; path = ../../SmartBrick.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		622B3AF21EB72AFA0011D651 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		622B3AEC1EB72AFA0011D651 = {
+			isa = PBXGroup;
+			children = (
+				622B3AF71EB72AFA0011D651 /* SmartBrick UI */,
+				622B3AF61EB72AFA0011D651 /* Products */,
+				6256680B1EB73503002F3FE8 /* SmartBrick.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		622B3AF61EB72AFA0011D651 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				622B3AF51EB72AFA0011D651 /* SmartBrick UI.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		622B3AF71EB72AFA0011D651 /* SmartBrick UI */ = {
+			isa = PBXGroup;
+			children = (
+				622B3AF81EB72AFA0011D651 /* AppDelegate.swift */,
+				622B3AFA1EB72AFA0011D651 /* SplitViewController.swift */,
+				622B3B071EB72E360011D651 /* SmartBrickViewController.swift */,
+				622B3AFC1EB72AFA0011D651 /* Assets.xcassets */,
+				622B3AFE1EB72AFA0011D651 /* Main.storyboard */,
+				622B3B011EB72AFA0011D651 /* Info.plist */,
+			);
+			path = "SmartBrick UI";
+			sourceTree = "<group>";
+		};
+		6256680C1EB73503002F3FE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				625668131EB73503002F3FE8 /* SmartBrick.framework */,
+				625668151EB73503002F3FE8 /* SmartBrick.framework */,
+				625668171EB73503002F3FE8 /* SmartBrick-iOS Tests.xctest */,
+				625668191EB73503002F3FE8 /* SmartBrick-macOS Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		622B3AF41EB72AFA0011D651 /* SmartBrick UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 622B3B041EB72AFA0011D651 /* Build configuration list for PBXNativeTarget "SmartBrick UI" */;
+			buildPhases = (
+				622B3AF11EB72AFA0011D651 /* Sources */,
+				622B3AF21EB72AFA0011D651 /* Frameworks */,
+				622B3AF31EB72AFA0011D651 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6256681B1EB73559002F3FE8 /* PBXTargetDependency */,
+			);
+			name = "SmartBrick UI";
+			productName = "SmartBrick UI";
+			productReference = 622B3AF51EB72AFA0011D651 /* SmartBrick UI.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		622B3AED1EB72AFA0011D651 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Claus Höfele";
+				TargetAttributes = {
+					622B3AF41EB72AFA0011D651 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 44GL67YD3Z;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 622B3AF01EB72AFA0011D651 /* Build configuration list for PBXProject "SmartBrick UI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 622B3AEC1EB72AFA0011D651;
+			productRefGroup = 622B3AF61EB72AFA0011D651 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6256680C1EB73503002F3FE8 /* Products */;
+					ProjectRef = 6256680B1EB73503002F3FE8 /* SmartBrick.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				622B3AF41EB72AFA0011D651 /* SmartBrick UI */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		625668131EB73503002F3FE8 /* SmartBrick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SmartBrick.framework;
+			remoteRef = 625668121EB73503002F3FE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		625668151EB73503002F3FE8 /* SmartBrick.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SmartBrick.framework;
+			remoteRef = 625668141EB73503002F3FE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		625668171EB73503002F3FE8 /* SmartBrick-iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SmartBrick-iOS Tests.xctest";
+			remoteRef = 625668161EB73503002F3FE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		625668191EB73503002F3FE8 /* SmartBrick-macOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "SmartBrick-macOS Tests.xctest";
+			remoteRef = 625668181EB73503002F3FE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		622B3AF31EB72AFA0011D651 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				622B3AFD1EB72AFA0011D651 /* Assets.xcassets in Resources */,
+				622B3B001EB72AFA0011D651 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		622B3AF11EB72AFA0011D651 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				622B3AFB1EB72AFA0011D651 /* SplitViewController.swift in Sources */,
+				622B3B081EB72E360011D651 /* SmartBrickViewController.swift in Sources */,
+				622B3AF91EB72AFA0011D651 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6256681B1EB73559002F3FE8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SmartBrick-macOS";
+			targetProxy = 6256681A1EB73559002F3FE8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		622B3AFE1EB72AFA0011D651 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				622B3AFF1EB72AFA0011D651 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		622B3B021EB72AFA0011D651 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		622B3B031EB72AFA0011D651 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		622B3B051EB72AFA0011D651 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 44GL67YD3Z;
+				INFOPLIST_FILE = "SmartBrick UI/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.claushoefele.SmartBrick-UI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		622B3B061EB72AFA0011D651 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 44GL67YD3Z;
+				INFOPLIST_FILE = "SmartBrick UI/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.claushoefele.SmartBrick-UI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		622B3AF01EB72AFA0011D651 /* Build configuration list for PBXProject "SmartBrick UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				622B3B021EB72AFA0011D651 /* Debug */,
+				622B3B031EB72AFA0011D651 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		622B3B041EB72AFA0011D651 /* Build configuration list for PBXNativeTarget "SmartBrick UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				622B3B051EB72AFA0011D651 /* Debug */,
+				622B3B061EB72AFA0011D651 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 622B3AED1EB72AFA0011D651 /* Project object */;
+}
