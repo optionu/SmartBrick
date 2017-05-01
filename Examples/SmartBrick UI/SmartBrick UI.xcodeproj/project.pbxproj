@@ -12,6 +12,7 @@
 		622B3AFD1EB72AFA0011D651 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 622B3AFC1EB72AFA0011D651 /* Assets.xcassets */; };
 		622B3B001EB72AFA0011D651 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 622B3AFE1EB72AFA0011D651 /* Main.storyboard */; };
 		622B3B081EB72E360011D651 /* SmartBrickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622B3B071EB72E360011D651 /* SmartBrickViewController.swift */; };
+		6236DD601EB79CA700259310 /* SmartBrickListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6236DD5F1EB79CA700259310 /* SmartBrickListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		622B3AFF1EB72AFA0011D651 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		622B3B011EB72AFA0011D651 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		622B3B071EB72E360011D651 /* SmartBrickViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBrickViewController.swift; sourceTree = "<group>"; };
+		6236DD5F1EB79CA700259310 /* SmartBrickListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartBrickListViewController.swift; sourceTree = "<group>"; };
 		6256680B1EB73503002F3FE8 /* SmartBrick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SmartBrick.xcodeproj; path = ../../SmartBrick.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 			children = (
 				622B3AF81EB72AFA0011D651 /* AppDelegate.swift */,
 				622B3AFA1EB72AFA0011D651 /* SplitViewController.swift */,
+				6236DD5F1EB79CA700259310 /* SmartBrickListViewController.swift */,
 				622B3B071EB72E360011D651 /* SmartBrickViewController.swift */,
 				622B3AFC1EB72AFA0011D651 /* Assets.xcassets */,
 				622B3AFE1EB72AFA0011D651 /* Main.storyboard */,
@@ -227,6 +230,7 @@
 			files = (
 				622B3AFB1EB72AFA0011D651 /* SplitViewController.swift in Sources */,
 				622B3B081EB72E360011D651 /* SmartBrickViewController.swift in Sources */,
+				6236DD601EB79CA700259310 /* SmartBrickListViewController.swift in Sources */,
 				622B3AF91EB72AFA0011D651 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
