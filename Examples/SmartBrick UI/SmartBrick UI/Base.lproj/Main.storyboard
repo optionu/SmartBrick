@@ -666,7 +666,7 @@
             <objects>
                 <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="SmartBrick_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="SmartBrick UI" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" unifiedTitleAndToolbar="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -727,23 +727,23 @@
             <objects>
                 <viewController id="5Bn-y2-LLL" customClass="SmartBrickListViewController" customModule="SmartBrick_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="jMc-zT-jpg">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQ2-MV-ieN">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="300"/>
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQ2-MV-ieN">
+                                <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" id="r4q-mg-Il8">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" outlineTableColumn="bx1-zc-fxi" id="dOo-TN-apb">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="300"/>
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" outlineTableColumn="bx1-zc-fxi" id="dOo-TN-apb">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="237" minWidth="16" maxWidth="1000" id="bx1-zc-fxi">
+                                                <tableColumn width="177" minWidth="16" maxWidth="1000" id="bx1-zc-fxi">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -757,11 +757,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="HeaderCellID" id="5NX-vl-Lq6">
-                                                            <rect key="frame" x="1" y="1" width="237" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="177" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RbR-O1-w9R">
-                                                                    <rect key="frame" x="0.0" y="1" width="237" height="14"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="177" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="DEVICES" id="xAl-xD-UcC">
                                                                         <font key="font" metaFont="smallSystemBold"/>
                                                                         <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -779,7 +779,7 @@
                                                             </connections>
                                                         </tableCellView>
                                                         <tableCellView identifier="DeviceCellID" id="3GA-M9-uZ5">
-                                                            <rect key="frame" x="1" y="20" width="237" height="17"/>
+                                                            <rect key="frame" x="1" y="20" width="177" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView translatesAutoresizingMaskIntoConstraints="NO" id="Zpe-zl-tJw">
@@ -790,7 +790,7 @@
                                                                     <imageCell key="cell" refusesFirstResponder="YES" imageScaling="proportionallyDown" image="NSActionTemplate" id="j9z-kB-XQD"/>
                                                                 </imageView>
                                                                 <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H85-kP-Mvp">
-                                                                    <rect key="frame" x="25" y="0.0" width="212" height="17"/>
+                                                                    <rect key="frame" x="25" y="0.0" width="152" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="yHK-DZ-RGN">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -822,8 +822,8 @@
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="6hD-Ie-mtz">
-                                    <rect key="frame" x="1" y="283" width="238" height="16"/>
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="6hD-Ie-mtz">
+                                    <rect key="frame" x="0.0" y="284" width="180" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="X6o-w5-2KZ">
@@ -845,18 +845,18 @@
                 </viewController>
                 <customObject id="BGb-yG-YoP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="666" y="480"/>
+            <point key="canvasLocation" x="636" y="479"/>
         </scene>
         <!--Smart Brick View Controller-->
         <scene sceneID="uCc-2z-OcK">
             <objects>
                 <viewController id="JiJ-c6-0Dt" customClass="SmartBrickViewController" customModule="SmartBrick_UI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="QbM-V9-mAq">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LsE-WI-kCR">
-                                <rect key="frame" x="0.0" y="131" width="240" height="169"/>
+                                <rect key="frame" x="0.0" y="131" width="320" height="169"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Er-ls-gNl">
                                         <rect key="frame" x="8" y="140" width="195" height="21"/>
@@ -1099,7 +1099,7 @@
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                 </textFieldCell>
             </objects>
-            <point key="canvasLocation" x="666" y="856"/>
+            <point key="canvasLocation" x="696" y="856"/>
         </scene>
     </scenes>
     <resources>
