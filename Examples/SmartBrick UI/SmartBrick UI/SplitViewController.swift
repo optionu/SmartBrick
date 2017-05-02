@@ -10,30 +10,37 @@ import Cocoa
 import SmartBrick
 
 class SplitViewController: NSSplitViewController {
-    @IBOutlet weak var listViewItem: NSSplitViewItem!
-    @IBOutlet weak var itemViewItem: NSSplitViewItem!
+    @IBOutlet private weak var listViewItem: NSSplitViewItem!
+    @IBOutlet private weak var itemViewItem: NSSplitViewItem!
     
-    let smartBricksManager = SmartBrickManager()
-    var connectedSmartBrick: SBrick?
-    var motionSensor: SBrickMotionSensor?
+    fileprivate var listViewController: SmartBrickListViewController? {
+        return listViewItem.viewController as? SmartBrickListViewController
+    }
     
-    var itemViewController: SmartBrickViewController? {
+    private var itemViewController: SmartBrickViewController? {
         return itemViewItem.viewController as? SmartBrickViewController
     }
+    
+    private let smartBrickManager = SmartBrickManager()
+    private var connectedSmartBrick: SBrick?
+    private var motionSensor: SBrickMotionSensor?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        smartBricksManager.connectToNearestDevice() { smartBrick in
-            switch smartBrick {
-            case let sbrick as SBrick:
-                self.connectedSmartBrick = sbrick
-                let name = sbrick.peripheral.name ?? "<unknown>"
-                self.itemViewController?.connectionState = .connected(name)
-            default:
-                print("No smart brick found")
-            }
-        }
+        smartBrickManager.delegate = self
+        smartBrickManager.scanForDevices()
+        
+//        smartBricksManager.connectToNearestDevice() { smartBrick in
+//            switch smartBrick {
+//            case let sbrick as SBrick:
+//                self.connectedSmartBrick = sbrick
+//                let name = sbrick.peripheral.name ?? "<unknown>"
+//                self.itemViewController?.connectionState = .connected(name)
+//            default:
+//                print("No smart brick found")
+//            }
+//        }
         
         itemViewController?.updateActuator = { portValue, powerValue in
             //    let port = SBrickPort(rawValue: UInt8(portValue)) ?? .a
@@ -56,3 +63,8 @@ class SplitViewController: NSSplitViewController {
     }
 }
 
+extension SplitViewController: SmartBrickManagerDelegate {
+    func smartBrickManager(_ smartBrickManager: SmartBrickManager, didDiscover smartBrick: SmartBrick) {
+        listViewController?.updateList(with: smartBrick)
+    }
+}

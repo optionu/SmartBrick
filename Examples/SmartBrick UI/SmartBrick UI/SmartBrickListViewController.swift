@@ -7,14 +7,24 @@
 //
 
 import Cocoa
+import SmartBrick
 
-private struct Item {
-    var name: String
+private class Item {
+    var device: SmartBrick
+    
+    init(device: SmartBrick) {
+        self.device = device
+    }
 }
 
-private struct Group {
+private class Group {
     var name: String
     var items: [Item]
+
+    init(name: String, items: [Item]) {
+        self.name = name
+        self.items = items
+    }
 }
 
 class SmartBrickListViewController: NSViewController {
@@ -25,9 +35,14 @@ class SmartBrickListViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let group = Group(name: "DEVICES", items: [Item(name: "Device 1"), Item(name: "Device 2")])
-        groups.append(group)
+        groups.append(Group(name: "DEVICES", items: []))
         outlineView.expandItem(nil, expandChildren: true)
+    }
+    
+    func updateList(with device: SmartBrick) {
+        let item = Item(device: device)
+        groups[0].items.append(item)
+        outlineView.insertItems(at: IndexSet(integer: groups[0].items.count - 1), inParent: groups[0], withAnimation: [])
     }
 }
 
@@ -69,12 +84,12 @@ extension SmartBrickListViewController: NSOutlineViewDelegate {
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         var view: NSTableCellView?
         
-        if let item = item as? Group {
+        if let group = item as? Group {
             view = outlineView.make(withIdentifier: "HeaderCellID", owner: self) as? NSTableCellView
-            view?.textField?.stringValue = item.name
+            view?.textField?.stringValue = group.name
         } else if let item = item as? Item {
             view = outlineView.make(withIdentifier: "DeviceCellID", owner: self) as? NSTableCellView
-            view?.textField?.stringValue = item.name
+            view?.textField?.stringValue = item.device.peripheral.name ?? "<unknown>"
         }
         
         return view
