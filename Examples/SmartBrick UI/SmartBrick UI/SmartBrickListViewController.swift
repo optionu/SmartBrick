@@ -27,9 +27,14 @@ private class Group {
     }
 }
 
+protocol SmartBrickListViewControllerDelegate: class {
+    func smartBrickListViewController(_ smartBrickListViewController: SmartBrickListViewController, didSelect smartBrick: SmartBrick)
+}
+
 class SmartBrickListViewController: NSViewController {
-    @IBOutlet private weak var outlineView: NSOutlineView!
+    weak var delegate: SmartBrickListViewControllerDelegate?
     
+    @IBOutlet private weak var outlineView: NSOutlineView!
     fileprivate var groups = [Group]()
     
     override func viewDidLoad() {
@@ -93,5 +98,14 @@ extension SmartBrickListViewController: NSOutlineViewDelegate {
         }
         
         return view
+    }
+    
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        guard let outlineView = notification.object as? NSOutlineView,
+            let item = outlineView.item(atRow: outlineView.selectedRow) as? Item else {
+            return
+        }
+        
+        delegate?.smartBrickListViewController(self, didSelect: item.device)
     }
 }

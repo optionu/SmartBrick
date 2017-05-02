@@ -28,13 +28,22 @@ class WindowController: NSWindowController {
         super.windowDidLoad()
         
         window?.titleVisibility = .hidden
+        
         smartBrickManager.delegate = self
         smartBrickManager.scanForDevices()
+        
+        listViewController?.delegate = self
     }
 }
 
 extension WindowController: SmartBrickManagerDelegate {
     func smartBrickManager(_ smartBrickManager: SmartBrickManager, didDiscover smartBrick: SmartBrick) {
         listViewController?.updateList(with: smartBrick)
+    }
+}
+
+extension WindowController: SmartBrickListViewControllerDelegate {
+    func smartBrickListViewController(_ smartBrickListViewController: SmartBrickListViewController, didSelect smartBrick: SmartBrick) {
+        print("Selected \(String(describing: smartBrick.peripheral.name))")
     }
 }
