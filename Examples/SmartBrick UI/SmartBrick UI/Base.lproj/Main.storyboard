@@ -670,19 +670,24 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <toolbar key="toolbar" implicitIdentifier="9DE21E64-6EE1-4FA0-A8E0-DAE5B6707B03" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="ahG-IX-IhA">
+                        <toolbar key="toolbar" implicitIdentifier="9DE21E64-6EE1-4FA0-A8E0-DAE5B6707B03" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="ahG-IX-IhA">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="XLh-pJ-Eiz"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="VQt-VP-t65"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="5pv-yA-Jad"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="dqh-KK-M7t"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="822-kz-AYV"/>
+                                <toolbarItem implicitItemIdentifier="2768929A-2EB4-4DDC-B944-E5D2D4FC2E0D" label="" paletteLabel="" id="Y7O-ss-ug4">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="47" height="25"/>
+                                    <size key="maxSize" width="100" height="25"/>
+                                    <button key="view" verticalHuggingPriority="750" id="cUF-0C-jrA">
+                                        <rect key="frame" x="0.0" y="14" width="98" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" title="Connect" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BHd-aB-65y">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="XLh-pJ-Eiz"/>
-                                <toolbarItem reference="VQt-VP-t65"/>
-                                <toolbarItem reference="822-kz-AYV"/>
-                                <toolbarItem reference="5pv-yA-Jad"/>
+                                <toolbarItem reference="Y7O-ss-ug4"/>
                             </defaultToolbarItems>
                         </toolbar>
                     </window>
@@ -697,7 +702,7 @@
         <!--Split View Controller-->
         <scene sceneID="Tyn-wL-SKK">
             <objects>
-                <splitViewController id="HiD-fc-9WA" customClass="SplitViewController" customModule="SmartBrick_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController id="HiD-fc-9WA" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem id="QSr-Rx-mT4"/>
                         <splitViewItem id="FWk-YW-iB8"/>
