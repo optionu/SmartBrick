@@ -9,11 +9,17 @@
 import Cocoa
 import SmartBrick
 
-private class Item {
+// Item is required as a wrapper around SmartBrick because NSOutlineView tests its
+// items for identity and for this reason requires a class object.
+private class Item: Equatable {
     var device: SmartBrick
     
     init(device: SmartBrick) {
         self.device = device
+    }
+
+    static func ==(lhs: Item, rhs: Item) -> Bool {
+        return lhs.device.peripheral.identifier == rhs.device.peripheral.identifier
     }
 }
 
@@ -46,8 +52,17 @@ class SmartBrickListViewController: NSViewController {
     
     func updateList(with device: SmartBrick) {
         let item = Item(device: device)
-        groups[0].items.append(item)
-        outlineView.insertItems(at: IndexSet(integer: groups[0].items.count - 1), inParent: groups[0], withAnimation: [])
+        
+        if let index = groups[0].items.index(where: {$0 == item}) {
+            // Updated device
+            let item = groups[0].items[index]
+            item.device = device
+            outlineView.reloadItem(item)
+        } else {
+            // New device
+            groups[0].items.append(item)
+            outlineView.insertItems(at: IndexSet(integer: groups[0].items.count - 1), inParent: groups[0], withAnimation: [])
+        }
     }
 }
 
