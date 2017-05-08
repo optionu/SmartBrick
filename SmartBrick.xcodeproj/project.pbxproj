@@ -135,8 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				0392C9E01E93C2DD006BEE71 /* SmartBrick.swift */,
-				034CFE741E97BE4C004F43DF /* SmartBrickController.swift */,
 				039CD9911E92A4A2006D4992 /* SmartBrickManager.swift */,
+				034CFE741E97BE4C004F43DF /* SmartBrickController.swift */,
 				62CCA8CC1E95848E00F00B80 /* BinaryReader.swift */,
 				034CFE771E97BF14004F43DF /* NearestDeviceHelper.swift */,
 				6250A6A31E9C25A3007934FB /* SBrick.swift */,
