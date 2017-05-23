@@ -9,10 +9,20 @@
 import Foundation
 import CoreBluetooth
 
+public struct SmartBrickDescription {
+    public var identifier: UUID
+    public var name: String?
+
+    public enum DeviceType {
+        case sbrick
+        case sbrickPlus
+    }
+
+    public var deviceType: DeviceType
+}
+
 public protocol SmartBrick: class {
     var peripheral: CBPeripheral { get }
-    
-    func prepareConnection(completionHandler: @escaping (() -> Void))
 }
 
 public protocol IOChannel {

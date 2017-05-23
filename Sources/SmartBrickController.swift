@@ -16,7 +16,7 @@ protocol SmartBrickControllerDelegate: class {
 class SmartBrickController: NSObject, CBCentralManagerDelegate {
     fileprivate let central: CBCentralManager
     fileprivate var shouldBeScanning = false
-    fileprivate var connectingDevices = [UUID: () -> Void]()
+    fileprivate var connectingDevices = [UUID: (SmartBrickDescription, (SmartBrick?) -> Void)]()
 
     weak var delegate: SmartBrickControllerDelegate?
     
@@ -74,27 +74,41 @@ extension SmartBrickController {
 }
 
 extension SmartBrickController {
-    func connect(peripheral: CBPeripheral, completionHandler: @escaping (() -> Void)) {
+    func connect(_ smartBrickDescription: SmartBrickDescription, completionHandler: @escaping ((SmartBrick?) -> Void)) {
         print("connect")
-        connectingDevices[peripheral.identifier] = completionHandler
+
+        guard let peripheral = central.retrievePeripherals(withIdentifiers: [smartBrickDescription.identifier]).first else {
+            completionHandler(nil)
+            return
+        }
+
+        connectingDevices[smartBrickDescription.identifier] = (smartBrickDescription, completionHandler)
         central.connect(peripheral)
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("didConnect")
-        if let completionBlock = connectingDevices[peripheral.identifier] {
+        if let (description, completionBlock) = connectingDevices[peripheral.identifier] {
             print("didConnect completionBlock")
             connectingDevices[peripheral.identifier] = nil
-            completionBlock()
+
+            let smartBrick: SmartBrick?
+            switch description.deviceType {
+            case .sbrick:
+                smartBrick = SBrick(peripheral: peripheral, manufacturerData: Data())
+            case .sbrickPlus:
+                smartBrick = SBrickPlus(peripheral: peripheral, manufacturerData: Data())
+            }
+            completionBlock(smartBrick)
         }
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("didFailToConnect")
-        if let completionBlock = connectingDevices[peripheral.identifier] {
+        if let (_, completionBlock) = connectingDevices[peripheral.identifier] {
             print("didFailToConnect completionBlock")
             connectingDevices[peripheral.identifier] = nil
-            completionBlock()
+            completionBlock(nil)
         }
     }
     

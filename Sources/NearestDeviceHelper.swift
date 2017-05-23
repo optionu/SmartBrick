@@ -16,11 +16,11 @@ class NearestDeviceHelper: SmartBrickControllerDelegate {
     }
 
     func smartBrickController(_ smartBrickController: SmartBrickController, didDiscover smartBrick: SmartBrick) {
-        smartBrickController.stopScanning()
-        smartBrickController.connect(peripheral: smartBrick.peripheral) {
-            smartBrick.prepareConnection() {
-                self.completionBlock(smartBrick)
-            }
-        }
+//        smartBrickController.stopScanning()
+//        smartBrickController.connect(peripheral: smartBrick.peripheral) {
+//            smartBrick.prepareConnection() {
+//                self.completionBlock(smartBrick)
+//            }
+//        }
     }
 }

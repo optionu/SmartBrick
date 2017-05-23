@@ -43,6 +43,10 @@ public final class SmartBrickManager: SmartBrickControllerDelegate {
         controller.stopScanning()
     }
 
+    public func connect(_ smartBrickDescription: SmartBrickDescription, completionBlock: @escaping ((SmartBrick?) -> Void)) {
+        controller.connect(smartBrickDescription, completionHandler: completionBlock)
+    }
+
     func smartBrickController(_ smartBrickController: SmartBrickController, didDiscover smartBrick: SmartBrick) {
         delegate?.smartBrickManager(self, didDiscover: smartBrick)
     }

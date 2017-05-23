@@ -10,7 +10,7 @@ import Cocoa
 import SmartBrick
 
 class WindowController: NSWindowController {
-    private let smartBrickManager = SmartBrickManager()
+    fileprivate let smartBrickManager = SmartBrickManager()
     
     fileprivate var listViewController: SmartBrickListViewController? {
         let splitViewController = window?.contentViewController as? NSSplitViewController
@@ -44,6 +44,14 @@ extension WindowController: SmartBrickManagerDelegate {
 
 extension WindowController: SmartBrickListViewControllerDelegate {
     func smartBrickListViewController(_ smartBrickListViewController: SmartBrickListViewController, didSelect smartBrick: SmartBrick) {
-        print("Selected \(String(describing: smartBrick.peripheral.name))")
+
+    }
+    
+    func smartBrickListViewController(_ smartBrickListViewController: SmartBrickListViewController, didSelect smartBrickDescription: SmartBrickDescription) {
+        print("Selected \(String(describing: smartBrickDescription.name))")
+
+        smartBrickManager.connect(smartBrickDescription) { smartBrick in
+            print("Connected \(String(describing: smartBrick))")
+        }
     }
 }
