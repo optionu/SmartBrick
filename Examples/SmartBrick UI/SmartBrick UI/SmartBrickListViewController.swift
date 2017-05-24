@@ -9,8 +9,8 @@
 import Cocoa
 import SmartBrick
 
-// Item is required as a wrapper around SmartBrick because NSOutlineView tests its
-// items for identity and for this reason requires a class object.
+// Item is required as a wrapper around SmartBrickDescription because NSOutlineView 
+// tests its items for identity and for this reason requires a class object.
 private class Item: Equatable {
     var smartBrickDescription: SmartBrickDescription
     

@@ -13,6 +13,10 @@ open class SBrickPlus: SBrick {
     override public init(peripheral: CBPeripheral) {
         super.init(peripheral: peripheral)
     }
+
+    override class func isValidDevice(manufacturerData: Data) -> Bool {
+        return isValidDevice(manufacturerData: manufacturerData, testForSBrickPlus: true)
+    }
 }
 
 extension SBrick {

@@ -27,6 +27,10 @@ open class SBrick: SmartBrick {
         controller.delegate = self
         peripheral.delegate = controller
     }
+
+    class func isValidDevice(manufacturerData: Data) -> Bool {
+        return isValidDevice(manufacturerData: manufacturerData, testForSBrickPlus: false)
+    }
     
     class func isValidDevice(manufacturerData: Data, testForSBrickPlus: Bool) -> Bool {
         let binaryReader = BinaryReader(withData: manufacturerData, bigEndian: true)
