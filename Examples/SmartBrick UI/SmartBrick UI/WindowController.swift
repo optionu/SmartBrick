@@ -37,16 +37,12 @@ class WindowController: NSWindowController {
 }
 
 extension WindowController: SmartBrickManagerDelegate {
-    func smartBrickManager(_ smartBrickManager: SmartBrickManager, didDiscover smartBrick: SmartBrick) {
-        listViewController?.updateList(with: smartBrick)
+    func smartBrickManager(_ smartBrickManager: SmartBrickManager, didDiscover smartBrickDescription: SmartBrickDescription) {
+        listViewController?.updateList(with: smartBrickDescription)
     }
 }
 
 extension WindowController: SmartBrickListViewControllerDelegate {
-    func smartBrickListViewController(_ smartBrickListViewController: SmartBrickListViewController, didSelect smartBrick: SmartBrick) {
-
-    }
-    
     func smartBrickListViewController(_ smartBrickListViewController: SmartBrickListViewController, didSelect smartBrickDescription: SmartBrickDescription) {
         print("Selected \(String(describing: smartBrickDescription.name))")
 

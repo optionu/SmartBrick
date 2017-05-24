@@ -12,14 +12,14 @@ import SmartBrick
 // Item is required as a wrapper around SmartBrick because NSOutlineView tests its
 // items for identity and for this reason requires a class object.
 private class Item: Equatable {
-    var device: SmartBrick
+    var smartBrickDescription: SmartBrickDescription
     
-    init(device: SmartBrick) {
-        self.device = device
+    init(smartBrickDescription: SmartBrickDescription) {
+        self.smartBrickDescription = smartBrickDescription
     }
 
     static func ==(lhs: Item, rhs: Item) -> Bool {
-        return lhs.device.peripheral.identifier == rhs.device.peripheral.identifier
+        return lhs.smartBrickDescription.identifier == rhs.smartBrickDescription.identifier
     }
 }
 
@@ -34,7 +34,7 @@ private class Group {
 }
 
 protocol SmartBrickListViewControllerDelegate: class {
-    func smartBrickListViewController(_ smartBrickListViewController: SmartBrickListViewController, didSelect smartBrick: SmartBrick)
+    func smartBrickListViewController(_ smartBrickListViewController: SmartBrickListViewController, didSelect smartBrickDescription: SmartBrickDescription)
 }
 
 class SmartBrickListViewController: NSViewController {
@@ -50,13 +50,13 @@ class SmartBrickListViewController: NSViewController {
         outlineView.expandItem(nil, expandChildren: true)
     }
     
-    func updateList(with device: SmartBrick) {
-        let item = Item(device: device)
+    func updateList(with smartBrickDescription: SmartBrickDescription) {
+        let item = Item(smartBrickDescription: smartBrickDescription)
         
         if let index = groups[0].items.index(where: {$0 == item}) {
             // Updated device
             let item = groups[0].items[index]
-            item.device = device
+            item.smartBrickDescription = smartBrickDescription
             outlineView.reloadItem(item)
         } else {
             // New device
@@ -109,7 +109,7 @@ extension SmartBrickListViewController: NSOutlineViewDelegate {
             view?.textField?.stringValue = group.name
         } else if let item = item as? Item {
             view = outlineView.make(withIdentifier: "DeviceCellID", owner: self) as? NSTableCellView
-            view?.textField?.stringValue = item.device.peripheral.name ?? "<unknown>"
+            view?.textField?.stringValue = item.smartBrickDescription.name ?? "<unknown>"
         }
         
         return view
@@ -121,6 +121,6 @@ extension SmartBrickListViewController: NSOutlineViewDelegate {
             return
         }
         
-        delegate?.smartBrickListViewController(self, didSelect: item.device)
+        delegate?.smartBrickListViewController(self, didSelect: item.smartBrickDescription)
     }
 }

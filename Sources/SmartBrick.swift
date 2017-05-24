@@ -14,8 +14,8 @@ public struct SmartBrickDescription {
     public var name: String?
 
     public enum DeviceType {
-        case sbrick
-        case sbrickPlus
+        case sBrick
+        case sBrickPlus
     }
 
     public var deviceType: DeviceType
