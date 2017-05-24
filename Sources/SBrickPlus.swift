@@ -10,8 +10,8 @@ import Foundation
 import CoreBluetooth
 
 open class SBrickPlus: SBrick {
-    public init?(peripheral: CBPeripheral, manufacturerData: Data) {
-        super.init(peripheral: peripheral, manufacturerData: manufacturerData, shouldBePlus: true)
+    override public init(peripheral: CBPeripheral) {
+        super.init(peripheral: peripheral)
     }
 }
 

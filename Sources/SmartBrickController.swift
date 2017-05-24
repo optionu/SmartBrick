@@ -97,9 +97,9 @@ extension SmartBrickController {
             let smartBrick: SmartBrick?
             switch description.deviceType {
             case .sBrick:
-                smartBrick = SBrick(peripheral: peripheral, manufacturerData: Data())
+                smartBrick = SBrick(peripheral: peripheral)
             case .sBrickPlus:
-                smartBrick = SBrickPlus(peripheral: peripheral, manufacturerData: Data())
+                smartBrick = SBrickPlus(peripheral: peripheral)
             }
             completionBlock(smartBrick)
         }

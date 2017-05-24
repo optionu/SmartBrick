@@ -21,13 +21,7 @@ open class SBrick: SmartBrick {
     fileprivate var completionBlock: (() -> Void)?
     fileprivate let controller: SBrickController
     
-    public convenience init?(peripheral: CBPeripheral, manufacturerData: Data) {
-        self.init(peripheral: peripheral, manufacturerData: manufacturerData, shouldBePlus: false)
-    }
-    
-    init?(peripheral: CBPeripheral, manufacturerData: Data, shouldBePlus: Bool) {
-        guard SBrick.isValidDevice(manufacturerData: manufacturerData, testForSBrickPlus: shouldBePlus) else { return nil }
-        
+    public init(peripheral: CBPeripheral) {
         self.peripheral = peripheral
         controller = SBrickController()
         controller.delegate = self
