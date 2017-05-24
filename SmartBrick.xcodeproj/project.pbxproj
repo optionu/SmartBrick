@@ -153,12 +153,12 @@
 		039CD9921E92A4A2006D4992 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				039CD9941E92A4A2006D4992 /* SmartBricksTests */,
+				039CD9941E92A4A2006D4992 /* SmartBrickTests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		039CD9941E92A4A2006D4992 /* SmartBricksTests */ = {
+		039CD9941E92A4A2006D4992 /* SmartBrickTests */ = {
 			isa = PBXGroup;
 			children = (
 				62CCA8CF1E9587E200F00B80 /* BinaryReaderTests.swift */,
@@ -170,7 +170,7 @@
 				620339D31EA3782A0037F665 /* SBrickCommandsTests.swift */,
 				6215EE9A1EA7FAB10039839A /* MulticastDelegateTests.swift */,
 			);
-			path = SmartBricksTests;
+			path = SmartBrickTests;
 			sourceTree = "<group>";
 		};
 		52D6D9721BEFF229002C0205 = {
