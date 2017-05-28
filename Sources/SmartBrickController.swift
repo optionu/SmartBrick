@@ -33,8 +33,6 @@ class SmartBrickController: NSObject, CBCentralManagerDelegate {
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        print("centralManagerDidUpdateState \(central.state.rawValue)")
-
         switch central.state {
         case .poweredOn:
             if shouldBeScanning {
@@ -59,8 +57,6 @@ extension SmartBrickController {
     }
     
     func stopScanning() {
-        print("stopScanning")
-        
         // Indicate that we shouldn't be scanning so delegate callbacks won't start a scan if we're not scanning right now.
         shouldBeScanning = false
         
@@ -68,7 +64,6 @@ extension SmartBrickController {
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi: NSNumber) {
-        print("didDiscover")
         if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
             let deviceType: SmartBrickDescription.DeviceType?
             if SBrick.isValidDevice(manufacturerData: manufacturerData) {
@@ -89,8 +84,6 @@ extension SmartBrickController {
 
 extension SmartBrickController {
     func connect(_ smartBrickDescription: SmartBrickDescription, completionHandler: @escaping ((SmartBrick?) -> Void)) {
-        print("connect")
-
         guard let peripheral = central.retrievePeripherals(withIdentifiers: [smartBrickDescription.identifier]).first else {
             completionHandler(nil)
             return
@@ -101,9 +94,7 @@ extension SmartBrickController {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("didConnect")
         if let connectingDevice = connectingDevices[peripheral.identifier] {
-            print("didConnect completionBlock")
             connectingDevices[peripheral.identifier] = nil
 
             let smartBrick: SmartBrick?
@@ -118,9 +109,7 @@ extension SmartBrickController {
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print("didFailToConnect")
         if let connectingDevice = connectingDevices[peripheral.identifier] {
-            print("didFailToConnect completionBlock")
             connectingDevices[peripheral.identifier] = nil
             connectingDevice.completionBlock(nil)
         }
