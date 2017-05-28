@@ -114,6 +114,12 @@ extension SmartBrickController {
             connectingDevice.completionBlock(nil)
         }
     }
+}
+
+extension SmartBrickController {
+    func disconnectAll() {
+        print("disconnectAll")
+    }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("didDisconnectPeripheral")

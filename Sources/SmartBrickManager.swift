@@ -24,6 +24,10 @@ public final class SmartBrickManager {
         controller.delegate = self
     }
     
+    deinit {
+        disconnectAll()
+    }
+    
     public func connectToNearestDevice(completionBlock: @escaping ((SmartBrick?) -> Void)) {
         deviceHelper = NearestDeviceHelper() { smartBrick in
             self.controller.delegate = self
@@ -45,6 +49,10 @@ public final class SmartBrickManager {
 
     public func connect(_ smartBrickDescription: SmartBrickDescription, completionBlock: @escaping ((SmartBrick?) -> Void)) {
         controller.connect(smartBrickDescription, completionHandler: completionBlock)
+    }
+    
+    public func disconnectAll() {
+        controller.disconnectAll()
     }
 }
 

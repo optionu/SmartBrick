@@ -28,11 +28,20 @@ class WindowController: NSWindowController {
         super.windowDidLoad()
         
         window?.titleVisibility = .hidden
+        window?.delegate = self
         
         smartBrickManager.delegate = self
         smartBrickManager.scanForDevices()
         
         listViewController?.delegate = self
+    }
+}
+
+extension WindowController: NSWindowDelegate {
+    func windowWillClose(_ notification: Notification) {
+        // Workaround for the issue that smartBrickManager's destructor isn't
+        // called when destroying the window
+        smartBrickManager.disconnectAll()
     }
 }
 
