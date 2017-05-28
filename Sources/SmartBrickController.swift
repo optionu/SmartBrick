@@ -16,7 +16,13 @@ protocol SmartBrickControllerDelegate: class {
 class SmartBrickController: NSObject, CBCentralManagerDelegate {
     fileprivate let central: CBCentralManager
     fileprivate var shouldBeScanning = false
-    fileprivate var connectingDevices = [UUID: (SmartBrickDescription, (SmartBrick?) -> Void)]()
+    
+    fileprivate struct ConnectingDevice {
+        var smartBrickDescription: SmartBrickDescription
+        var peripheral: CBPeripheral
+        var completionBlock: (SmartBrick?) -> Void
+    }
+    fileprivate var connectingDevices = [UUID: ConnectingDevice]()
 
     weak var delegate: SmartBrickControllerDelegate?
     
@@ -90,33 +96,33 @@ extension SmartBrickController {
             return
         }
 
-        connectingDevices[smartBrickDescription.identifier] = (smartBrickDescription, completionHandler)
+        connectingDevices[smartBrickDescription.identifier] = ConnectingDevice(smartBrickDescription: smartBrickDescription, peripheral: peripheral, completionBlock: completionHandler)
         central.connect(peripheral)
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("didConnect")
-        if let (description, completionBlock) = connectingDevices[peripheral.identifier] {
+        if let connectingDevice = connectingDevices[peripheral.identifier] {
             print("didConnect completionBlock")
             connectingDevices[peripheral.identifier] = nil
 
             let smartBrick: SmartBrick?
-            switch description.deviceType {
+            switch connectingDevice.smartBrickDescription.deviceType {
             case .sBrick:
                 smartBrick = SBrick(peripheral: peripheral)
             case .sBrickPlus:
                 smartBrick = SBrickPlus(peripheral: peripheral)
             }
-            completionBlock(smartBrick)
+            connectingDevice.completionBlock(smartBrick)
         }
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("didFailToConnect")
-        if let (_, completionBlock) = connectingDevices[peripheral.identifier] {
+        if let connectingDevice = connectingDevices[peripheral.identifier] {
             print("didFailToConnect completionBlock")
             connectingDevices[peripheral.identifier] = nil
-            completionBlock(nil)
+            connectingDevice.completionBlock(nil)
         }
     }
     
